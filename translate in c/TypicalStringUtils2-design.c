@@ -16,25 +16,76 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-TypicalInt8Array * TypicalStringUtils2_TypicalInt8ArrayFromUnsafeStr(
+TypicalInt32Array * TypicalStringUtils2_TypicalInt32ArrayFromUnsafeStr(
 	const int8 *str1) {
 
 	int32 length;
 	int32 i;
+	int32 j;
+	int32 c;
+	int32 utf8Len;
+	int32 c2;
+	int32 str2Pos;
 
-	length = TypicalStringUtils_UnsafeStrGetLength(str1);
+	length = TypicalStringUtils_unsafeStrGetLength(str1);
 	
-	TypicalInt8Array *str2 = new TypicalInt8Array();
+	TypicalInt32Array *str2 = new TypicalInt32Array();
 	//str2->data = (int8 *) malloc(length);
-	str2->theAry = new int8[length];
+	str2->theAry = new int32[length];
 
 	i = 0;
 	while(i < length) {
-		str2->theAry[i] = str1[i];
-		i += 1;
+		c = str1[i];
+		utf8Len = TypicalStringUtils_unicodeUtf8LengthFromFirstCodeUnit(
+			(int8) c);
+		
+		if(utf8Len == 0) {
+			str2->theAry[str2Pos] = str1[i];
+			i += 1;
+			str2Pos += 1;
+			continue;
+		}
+		
+		if(utf8Len >= 5
+			|| i + utf8Len > length) {
+			
+			InvalidEncodedSequenceException *e3 =
+				new InvalidEncodedSequenceException();
+			e3->position = i;
+			e3->length = 1;
+			throw e3;
+		}
+		
+		c2 = TypicalStringUtils_unicodeUtf8HighOrderBitsFromFirstCodeUnit(
+			c, utf8Len);
+		
+		j = 1;
+		while(j < utf8Len) {
+			c2 <<= 6;
+			
+			if(!TypicalStringUtils_unicodeUtf8IsFollowingCodeUnitValid(
+				str1[i + j])) {
+
+				InvalidEncodedSequenceException *e3 =
+					new InvalidEncodedSequenceException();
+				e3->position = i;
+				e3->length = utf8Len;
+				throw e3;
+			}
+			
+			c2 |= TypicalStringUtils_unicodeUtf8FollowingCodeUnitBits(
+				str1[i + j]);
+			
+			j += 1;
+		}
+		
+		str2->theAry[str2Pos] = str1[i];
+		
+		i += utf8Len;
+		str2Pos += 1;
 	}
 
-	str2->length = length;
+	str2->length = str2Pos;
 	str2->capacity = length;
 	return str2;
 }

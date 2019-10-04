@@ -19,7 +19,7 @@
 int32 TypicalInt32Array::getAtIndex(int32 index) {
 	if(index >= length) {
 		OutOfBoundsException *e1 = new OutOfBoundsException();
-		e1->msg = TypicalStringUtils_TypicalStringFromUnsafeStr(
+		e1->msg = TypicalStringUtils_typicalStringFromUnsafeStr(
 			"out of bounds");
 		throw e1;
 	}
@@ -30,7 +30,7 @@ int32 TypicalInt32Array::getAtIndex(int32 index) {
 void TypicalInt32Array::setAtIndex(int32 index, int32 value) {
 	if(index >= length) {
 		OutOfBoundsException *e1 = new OutOfBoundsException();
-		e1->msg = TypicalStringUtils_TypicalStringFromUnsafeStr(
+		e1->msg = TypicalStringUtils_typicalStringFromUnsafeStr(
 			"out of bounds");
 		throw e1;
 	}

@@ -21,4 +21,5 @@
  */
 
 class TypicalObject {
+	virtual void deleteObject();
 };

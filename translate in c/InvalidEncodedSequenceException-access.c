@@ -17,7 +17,12 @@
  */
 
 /*
- * Additional class with simple string functions.
+ * Exception when there is a badly encoded element
+ * in a sequence.
  */
 
-TypicalInt32Array * TypicalStringUtils2_TypicalInt32ArrayFromUnsafeStr(const int8 *str1);
+class InvalidEncodedSequenceException : public RuntimeException {
+public:
+	int32 position;
+	int32 length;
+};

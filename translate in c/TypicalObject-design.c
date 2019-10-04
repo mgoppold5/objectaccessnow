@@ -16,8 +16,5 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-/*
- * Additional class with simple string functions.
- */
-
-TypicalInt32Array * TypicalStringUtils2_TypicalInt32ArrayFromUnsafeStr(const int8 *str1);
+void TypicalObject::deleteObject() {
+}

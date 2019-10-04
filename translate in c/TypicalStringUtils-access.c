@@ -17,7 +17,16 @@
  */
 
 /*
- * Simple string class for 8-bit strings.
+ * Class with simple string functions.
  */
 
-TypicalString * TypicalStringUtils_TypicalStringFromUnsafeStr(const int8 *str1);
+int32 TypicalStringUtils_unicodeUtf8LengthFromFirstCodeUnit(
+	int8 c1);
+int32 TypicalStringUtils_unicodeUtf8IsFollowingCodeUnitValid(
+	int8 cn);
+int32 TypicalStringUtils_unicodeUtf8HighOrderBitsFromFirstCodeUnit(
+	int8 c1, int32 utf8Len);
+int32 TypicalStringUtils_unicodeUtf8FollowingCodeUnitBits(
+	int8 cn);
+TypicalString * TypicalStringUtils_typicalStringFromUnsafeStr(
+	const int8 *str1);

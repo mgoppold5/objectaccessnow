@@ -22,7 +22,7 @@
 
 class TypicalString : public TypicalObject {
 public:
-	int8 *data;
+	int32 *data;
 	int32 length;
 	int32 capacity;
 };
