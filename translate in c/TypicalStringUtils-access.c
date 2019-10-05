@@ -20,6 +20,8 @@
  * Class with simple string functions.
  */
 
+int32 TypicalStringUtils_unsafeStrGetLength(
+	const int8 *str1);
 int32 TypicalStringUtils_unicodeUtf8LengthFromFirstCodeUnit(
 	int8 c1);
 int32 TypicalStringUtils_unicodeUtf8IsFollowingCodeUnitValid(
