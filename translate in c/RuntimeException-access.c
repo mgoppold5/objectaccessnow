@@ -23,5 +23,6 @@
 
 class RuntimeException {
 public:
+	int16 id;
 	TypicalString *msg;
 };

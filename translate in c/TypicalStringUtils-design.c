@@ -114,6 +114,7 @@ TypicalString * TypicalStringUtils_typicalStringFromUnsafeStr(
 			
 			InvalidEncodedSequenceException *e3 =
 				new InvalidEncodedSequenceException();
+			e3->id = TypicalExceptionTypes_INVALID_ENCODED_SEQUENCE_ID;
 			e3->position = i;
 			e3->length = 1;
 			throw e3;
@@ -131,6 +132,7 @@ TypicalString * TypicalStringUtils_typicalStringFromUnsafeStr(
 
 				InvalidEncodedSequenceException *e3 =
 					new InvalidEncodedSequenceException();
+				e3->id = TypicalExceptionTypes_INVALID_ENCODED_SEQUENCE_ID;
 				e3->position = i;
 				e3->length = utf8Len;
 				throw e3;

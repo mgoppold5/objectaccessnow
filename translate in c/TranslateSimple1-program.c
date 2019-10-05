@@ -36,6 +36,8 @@
 #include "TypicalObject-access.c"
 #include "TypicalObject-design.c"
 #include "TypicalString-access.c"
+#include "TypicalExceptionTypes-access.c"
+#include "TypicalExceptionTypes-design.c"
 #include "RuntimeException-access.c"
 #include "OutOfMemoryException-access.c"
 #include "OutOfBoundsException-access.c"

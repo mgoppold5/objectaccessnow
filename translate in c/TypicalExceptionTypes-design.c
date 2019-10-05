@@ -16,26 +16,11 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-int32 TypicalInt32Array::getAtIndex(int32 index) {
-	if(index >= length) {
-		OutOfBoundsException *e1 = new OutOfBoundsException();
-		e1->id = TypicalExceptionTypes_OUT_OF_BOUNDS_ID;
-		e1->msg = TypicalStringUtils_typicalStringFromUnsafeStr(
-			"out of bounds");
-		throw e1;
-	}
+/*
+ * Enum for types extending from RuntimeException.
+ */
 
-	return theAry[index];
-}
-
-void TypicalInt32Array::setAtIndex(int32 index, int32 value) {
-	if(index >= length) {
-		OutOfBoundsException *e1 = new OutOfBoundsException();
-		e1->id = TypicalExceptionTypes_OUT_OF_BOUNDS_ID;
-		e1->msg = TypicalStringUtils_typicalStringFromUnsafeStr(
-			"out of bounds");
-		throw e1;
-	}
-
-	theAry[index] = value;
-}
+int32 TypicalExceptionTypes_RUNTIME_ID = 1;
+int32 TypicalExceptionTypes_OUT_OF_BOUNDS_ID = 2;
+int32 TypicalExceptionTypes_OUT_OF_MEMORY_ID = 3;
+int32 TypicalExceptionTypes_INVALID_ENCODED_SEQUENCE_ID = 4;
