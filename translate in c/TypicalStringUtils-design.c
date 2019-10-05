@@ -53,8 +53,8 @@ int32 TypicalStringUtils_unicodeUtf8IsFollowingCodeUnitValid(int8 cn) {
 	int twoBits;
 	
 	twoBits = cn >> 6;
-	if((twoBits & 2) == 2) return TRUE;
-	return FALSE;
+	if((twoBits & 2) == 2) return BASE_TRUE;
+	return BASE_FALSE;
 }
 
 int32 TypicalStringUtils_unicodeUtf8HighOrderBitsFromFirstCodeUnit(int8 c1, int32 utf8Len) {

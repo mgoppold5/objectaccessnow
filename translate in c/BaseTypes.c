@@ -30,5 +30,7 @@
 #define float32 float
 #define float64 double
 
-#define FALSE (0)
-#define TRUE (1)
+#define BASE_FALSE (0)
+#define BASE_TRUE (1)
+
+#define BASE_NULL (0)
