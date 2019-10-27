@@ -1,0 +1,56 @@
+<xml version="1.1">
+<class name="StorageRangeMetrics">
+<legal>
+Copyright (c) 2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+Tells how to measure/structure/count/deal-with,
+the bits in a range.
+</desc>
+<body>
+
+<var name="clientUnitSize"><desc>
+The little unit used to access every part of the range.
+Conventially bytes are used.
+Specified with a power of 2.
+</desc></var>
+
+<var name="memoryUnitSize"><desc>
+The unit used in buffer memory.
+Currently only 16-bit and 64-bit are supported.
+Specified with a power of 2.
+</desc></var>
+
+<var name="strictAlignSize"><desc>
+<p>
+The largest unit used to deal with ranges.
+The store, and all buffers, must be aligned to this size.
+All buffer access must be aligned to this size.
+A maximum size of 256-bit can be specified.
+Specified with a power of 2.
+</p>
+<p>
+The purpose of this value,
+is to simplify input and output.
+Having this variable as a constraint,
+is very good.
+</p>
+</desc></var>
+
+</body>
+</class>
+</xml>
