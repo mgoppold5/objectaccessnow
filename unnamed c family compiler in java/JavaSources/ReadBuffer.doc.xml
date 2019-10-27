@@ -1,0 +1,59 @@
+<xml version="1.1">
+<class name="ReadBuffer">
+<legal>
+Copyright (c) 2014-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+A general data source for CharReader.
+</desc>
+<body>
+
+<var name="bufferCombo"><desc>
+Holds the buffer data.
+</desc></var>
+
+<var name="startIndex"><desc>
+A position where the data starts.
+</desc></var>
+
+<constant name="VERSION_NUMBER_INVALID"><desc>
+The invalid version number, which makes data invalid.
+</desc></constant>
+
+<constant name="VERSION_NUMBER_START"><desc>
+The first valid version number.
+</desc></constant>
+
+<constant name="VERSION_NUMBER_LIMIT"><desc>
+The end of the range of valid version numbers (exclusive).
+The next number used is VERSION_NUMBER_START.
+</desc></constant>
+
+<var name="versionNumber"><desc>
+Number which changes to relect a need to update
+buffer indexes to point to their correct places in the stream.
+For example, should be changed when the buffer moves to a
+new position in a file.
+</desc></var>
+
+<function name="incrementVersion"><desc>
+Increments the version number.
+</desc></function>
+
+</body>
+</class>
+</xml>

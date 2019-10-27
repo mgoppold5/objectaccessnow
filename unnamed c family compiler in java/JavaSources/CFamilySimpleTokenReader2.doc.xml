@@ -1,0 +1,45 @@
+<xml version="1.1">
+<class name="CFamilySimpleTokenReader2">
+<legal>
+Copyright (c) 2014-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+<p>
+This module reads a stream of tokens from a source file.
+</p>
+<p>
+In its data, it uses the variable "ccStack".
+See SimpleReaderData, on how this variable works.
+</p>
+</desc>
+<body>
+
+<function name="readRegular"><desc>
+Reads until it finds the first non-whitespace character.
+Then it gives control to readToken.
+</desc></function>
+
+<function name="readToken"><desc>
+Starts the appropriate token helpers,
+given the first token char.
+Uses TokenChooser.
+Calls TokenChooser.chooseToken.
+</desc></function>
+
+</body>
+</class>
+</xml>

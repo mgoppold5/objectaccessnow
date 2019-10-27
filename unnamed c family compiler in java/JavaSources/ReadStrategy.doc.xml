@@ -1,0 +1,72 @@
+<xml version="1.1">
+<class name="ReadStrategy">
+<legal>
+Copyright (c) 2015-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+This class contains information about making a
+good and strategic read from the stream.
+</desc>
+<body>
+
+<var name="readAheadAmount"><desc>
+An amount, in code units.
+Tells how much to read ahead of the current index.
+A minimum read ammount, unless at the end of
+the stream.
+</desc></var>
+
+<var name="readBehindAmount"><desc>
+An amount, in code units.
+Tells how much to read behind of the current index.
+A minimum read ammount, unless at the beginning of
+the stream.
+</desc></var>
+
+<var name="minAheadAmount"><desc>
+An amount, in code units.  Tells how much data
+must be in the buffer after currentIndex.
+</desc></var>
+
+<var name="minBehindAmount"><desc>
+An amount, in code units.  Tells how much data
+must be in the buffer before currentIndex.
+</desc></var>
+
+<var name="readDirection"><desc>
+See ReadDirection.
+</desc></var>
+
+<var name="specificBufferSize"><desc>
+An amount, in code units,
+that tells the capacity of a new
+BufferElement.
+</desc></var>
+
+<var name="idealBufferSize"><desc>
+An amount, of an ideal total excerpt
+size.  Holding more is unnecessary.
+</desc></var>
+
+<var name="idealSpecificBufferCount"><desc>
+An ideal number of BufferElements
+to retain.  Holding more is unnecessary.
+</desc></var>
+
+</body>
+</class>
+</xml>

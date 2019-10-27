@@ -1,0 +1,45 @@
+<xml version="1.1">
+<class name="WhitespaceHelper">
+<legal>
+Copyright (c) 2015-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+<p>
+A helper for the tokenizer to handle whitespace.
+This is not a regular token helper.
+It is like a regular token helper,
+but it has different states.
+</p>            
+<p>
+After reset the state is STATE_START, then after
+advancing on the first char it is STATE_CONTINUE
+with the contentType set.
+Finally its character functions
+set the state to STATE_PAST, where
+it does not advance further.
+</p>            
+</desc>
+<body>
+
+<function name="evalFirstChar"><desc>
+Sets the variable contentType,
+based on the first character.
+</desc></function>
+
+</body>
+</class>
+</xml>

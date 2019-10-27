@@ -1,0 +1,150 @@
+<xml version="1.1">
+<class name="GeneralUtils">
+<legal>
+Copyright (c) 2015-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+General utilities.
+</desc>
+<body>
+
+<var name="lowerBitsMask"><desc>
+An array of integers, in which each int's first lower n bits are 1,
+and its upper bits are 0.
+</desc></var>
+
+<function name="lowerBitsInit"><desc>
+Returns a lower bits mask array.
+</desc></function>
+
+<function name="isXmlChar"><desc>
+Tells whether a char is an acceptable XML document char.
+Has a boolean, strict, when you want to be more strict.
+</desc></function>
+
+<function name="isXmlNameStartChar"><desc>
+Tells whether a char is an acceptable XML NameStartChar char.
+Has a boolean, strict, when you want to be more strict.
+</desc></function>
+
+<function name="isXmlNameChar"><desc>
+Tells whether a char is an acceptable XML NameChar char.
+Has a boolean, strict, when you want to be more strict.
+</desc></function>
+
+<function name="isCIdentifierStartChar"><desc>
+Tells whether a char is an acceptable C identifier first char.
+</desc></function>
+
+<function name="isCIdentifierChar"><desc>
+Tells whether a char is an acceptable C identifier char.
+</desc></function>
+
+<function name="isBasicLatinChar"><desc>
+Tells whether a char is a basic latin char.
+</desc></function>
+
+<function name="isWhitespaceChar"><desc>
+Tells whether a char is a whitespace char.
+</desc></function>
+
+<function name="isHexChar"><desc>
+Tells whether a char is a hexidecimal digit char.
+</desc></function>
+
+<function name="isDecimalChar"><desc>
+Tells whether a char is a decimal digit char.
+</desc></function>
+
+<function name="isOctalChar"><desc>
+Tells whether a char is a octal digit char.
+</desc></function>
+
+<function name="isBinaryChar"><desc>
+Tells whether a char is a binary digit char.
+</desc></function>
+
+<function name="getCodeUnitLittleEndian"><desc>
+Returns a code unit from a byte array.
+</desc></function>
+
+<function name="bufferIndexSkip"><desc>
+Advances a BufferIndex by a length.
+</desc></function>
+
+<function name="textIndexSkip"><desc>
+Advances a TextIndex by a length.
+</desc></function>
+
+<function name="textIndexSkipReturn"><desc>
+Advances a TextIndex by one line.  Must be called after calling
+textIndexSkip on the newline chars.
+</desc></function>
+
+<function name="copyBufferIndex"><desc>
+Copies a BufferIndex.
+</desc></function>
+
+<function name="copyTextIndex"><desc>
+Copies a TextIndex.
+</desc></function>
+
+<function name="moveProblems"><desc>
+Moves problems from one container to another.
+</desc></function>
+
+<function name="getCharReaderStartIndex"><desc>
+Returns the start index given a CharReaderParams.
+</desc></function>
+
+<function name="getCharReaderContext"><desc>
+Given an index, returns an existing CharReaderContext.
+If that position hasnt been allocated,
+it creates new CharReaderContext-s up to,
+and including that one.
+</desc></function>
+
+<function name="stringMatchSimple">
+<desc>
+Figures out how many characters of a sequence
+match correctString.  If finished, and
+the index equals the length of correctString,
+its a full match.
+</desc>
+<parameter-list>
+<var name="correctString"><desc>
+The correct string to match against.
+</desc></var>
+<var name="c"><desc>
+The current character to test for a match.
+</desc></var>
+<var name="index"><desc>
+The current index in the matching process.
+</desc></var>
+<var name="didAdvance"><desc>
+If the function advanced one character,
+and incremented the index.
+</desc></var>
+<var name="finished"><desc>
+If the matching process is complete.
+</desc></var>
+</parameter-list>
+</function>
+
+</body>
+</class>
+</xml>

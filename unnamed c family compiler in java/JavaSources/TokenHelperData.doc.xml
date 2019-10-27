@@ -1,0 +1,111 @@
+<xml version="1.1">
+<class name="TokenHelperData">
+<legal>
+Copyright (c) 2015-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+Data about a potential token.  Token helpers
+generally seek the longest possible token.
+It helps in differentiating among multiple potential tokens.
+</desc>
+<body>
+
+<constant name="STATE_CONTINUE"><desc>
+Indicates a token helper isnt done processing.
+</desc></constant>
+
+<constant name="STATE_DONE"><desc>
+State that indicates a token helper is done processing.
+The end of the token is pastIndex.  This result
+is reported by regular token helpers.
+</desc></constant>
+
+<constant name="STATE_PAST"><desc>
+State that indicates the helper is done processing.
+</desc></constant>
+
+<var name="match"><desc>
+True if there is a match.
+(Only the longest one is remembered.)
+</desc></var>
+
+<var name="resultLength"><desc>
+The length of the result token.
+</desc></var>
+
+<var name="startIndex"><desc>
+The start index of the result token.
+</desc></var>
+
+<var name="pastIndex"><desc>
+The past index of the result token.
+</desc></var>
+
+<var name="currentIndex"><desc>
+<p>
+The stream index that the helper is at.
+This index can be one character behind,
+in the reading process.
+</p>
+<p>
+Many token helpers use this variable.
+</p>
+</desc></var>
+
+<var name="radix"><desc>
+<p>
+The current radix, for handling digits.
+The max is usually 16.
+</p>
+<p>
+Many token helpers use this variable.
+</p>
+</desc></var>
+
+<var name="unsureLength"><desc>
+<p>
+Length of a span,
+that may/may-not be part of the token.
+</p>
+<p>
+If processing this span is successful,
+then it will be added to resultLength.
+</p>
+<p>
+Many token helpers use this variable.
+</p>
+</desc></var>
+
+<var name="unsure"><desc>
+<p>
+Tells if the helper is currently processing
+an unsure span.
+</p>
+<p>
+If true, the parser is unsure,
+that the span, starting from resultLength,
+with length unsureLength,
+will be in the final token.
+</p>
+<p>
+Many token helpers use this variable.
+</p>
+</desc></var>
+
+</body>
+</class>
+</xml>

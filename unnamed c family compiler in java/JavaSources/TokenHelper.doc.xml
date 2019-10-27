@@ -1,0 +1,56 @@
+<xml version="1.1">
+<interface name="TokenHelper">
+<legal>
+Copyright (c) 2015-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+<p>
+This interface supports token helper functionality.
+</p>
+<p>
+A token helper evaluates the characters of a stream,
+and the TokenHelperData tells the results.
+Token helper modules tell whether,
+the characters evaluate to a valid token.
+</p>
+</desc>
+<body>
+
+<function name="getToken"><desc>
+Returns a resulting token from the token helper evaluation.
+Can be null.
+</desc></function>
+
+<function name="reset"><desc>
+Resets the token helper to the starting state, in
+which it hasnt read any characters.
+</desc></function>
+
+<function name="advanceOneChar"><desc>
+makes the token helper handle a char, and moves
+the helper's internal index past the char.
+</desc></function>
+
+<function name="processEndOfStream"><desc>
+lets the token helper know of the end of the stream.
+This can be at the end of a file, or the end of
+any a text segment.
+</desc></function>
+
+</body>
+</interface>
+</xml>

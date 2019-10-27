@@ -1,0 +1,15 @@
+CharReaderParamsTypes
+GrammarAssociativityTypes
+GrammarNameTypes
+Keywords
+LangErrors
+ModuleMoveDirection
+ModuleMoveResult
+ProblemLevels
+Punctuation
+ReadDirection
+SimpleReaderNodeTypes
+StuckStates
+Symbols
+SymbolTypes
+SymbolStorageTypes

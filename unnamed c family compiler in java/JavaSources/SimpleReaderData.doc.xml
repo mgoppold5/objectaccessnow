@@ -1,0 +1,56 @@
+<xml verion="1.1">
+<class name="SimpleReaderData">
+<legal>
+Copyright (c) 2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+Data for SimpleReader parser modules.
+</desc>
+<body>
+
+<constant name="STATE_HAVE_SYMBOL"><desc>
+This state means that a symbol is ok/ready/waiting.
+</desc></constant>
+
+<var name="nodeStack"><desc>
+A stack of SimpleReaderNode-s,
+which pretty much houses the whole parser state.
+</desc></var>
+
+<var name="nodeStackIndex"><desc>
+Index for the current node in nodeStack.
+</desc></var>
+
+<var name="ccStack"><desc>
+<p>
+A stack of re-use-able CharReaderContext-s.
+</p>
+<p>
+While functions use this stack,
+they should know,
+what positions they are using,
+and the beginning position of unused ones.
+</p>
+<p>
+Once the stack is sufficiently large,
+the parser does not need to do any more allocation.
+</p>
+</desc></var>
+
+</body>
+</class>
+</xml>

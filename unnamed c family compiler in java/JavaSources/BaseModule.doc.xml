@@ -1,0 +1,55 @@
+<xml version="1.1">
+<interface name="BaseModule">
+<legal>
+Copyright (c) 2014-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+This Java interface defines base module functions.
+</desc>
+<body>
+
+<function name="getData"><desc>
+Simply returns the "dat" member variable, which
+stores a module's data.
+</desc></function>
+
+<function name="getChildModules"><desc>
+Creates a snapshot list of the module's current
+inner modules.
+</desc></function>
+
+<function name="getUsedProblemContainers"><desc>
+Creates a list of non-empty problem containers,
+for modules that have been deallocated.
+Major modules will want to collect these,
+and have them trickle into storage.
+</desc></function>
+
+<function name="checkModuleConfig"><desc>
+Returns true, for positive error,
+if the module isnt completely configured.
+If some important/needed variables are null,
+it returns true.
+</desc></function>
+
+<function name="getErrorFromModuleConfig"><desc>
+Returns the error that caused the config check to fail.
+</desc></function>
+
+</body>
+</interface>
+</xml>

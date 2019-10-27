@@ -1,0 +1,96 @@
+<xml version="1.1">
+<class name="XmlReferenceTokenHelperData">
+<legal>
+Copyright (c) 2014-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+XmlReferenceTokenHelper's data.
+</desc>
+<body>
+
+<constant name="STATE_REFERENCE"><desc>
+A mini state after reading an initial ampersand.
+</desc></constant>
+
+<constant name="STATE_REFERENCE_NAME"><desc>
+A mini state after reading part of an xml name.
+</desc></constant>
+
+<constant name="STATE_REFERENCE_NAME_END"><desc>
+A mini state after reading a full entity reference.
+</desc></constant>
+
+<constant name="STATE_REFERENCE_NUMBER"><desc>
+A mini state which expects to be followed by a number.
+</desc></constant>
+
+<constant name="STATE_REFERENCE_LETTER_X"><desc>
+A mini state after reading the letter x which
+is expected to be followed by a hexidecimal number.
+</desc></constant>
+
+<constant name="STATE_REFERENCE_INTEGER"><desc>
+A mini state after reading part of an integer.
+</desc></constant>
+
+<constant name="STATE_REFERENCE_INTEGER_END"><desc>
+A mini state after reading a complete character reference.
+</desc></constant>
+
+<var name="badSpanStartIndex"><desc>
+A start index for a bad span.
+</desc></var>
+
+<var name="badSpanPastIndex"><desc>
+A past index for a bad span.
+</desc></var>
+
+<var name="refStartIndex"><desc>
+A start index for the whole reference.
+</desc></var>
+
+<var name="refPastIndex"><desc>
+A past index for the whole reference.
+</desc></var>
+
+<var name="integerValid"><desc>
+If we found a whole char reference.
+</desc></var>
+
+<var name="integerStartIndex"><desc>
+A start index for the integer of the char reference.
+</desc></var>
+
+<var name="integerPastIndex"><desc>
+A past index for the integer of the char reference.
+</desc></var>
+
+<var name="nameValid"><desc>
+If we found a whole entity reference.
+</desc></var>
+
+<var name="nameStartIndex"><desc>
+A start index for the name for the entity reference.
+</desc></var>
+
+<var name="namePastIndex"><desc>
+A past index for the name for the entity reference.
+</desc></var>
+
+</body>
+</class>
+</xml>

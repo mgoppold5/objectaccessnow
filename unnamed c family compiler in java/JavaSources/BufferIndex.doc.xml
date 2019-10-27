@@ -1,0 +1,55 @@
+<xml version="1.1">
+<class name="BufferIndex">
+<legal>
+Copyright (c) 2014-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+<p>
+This Java class stores an index into a BufferCombo.
+</p>
+<p>
+This class is used for the sake of speed.
+For a real index, see TextIndex.
+</p>
+</desc>
+<body>
+
+<var name="updateNumber"><desc>
+The integer read from the related DataSource.
+If this integer doesnt match the DataSource's versionNumber,
+then the BufferIndex must be recalculated.
+</desc></var>
+
+<var name="index"><desc>
+An index from the start of the buffer.
+</desc></var>
+
+<var name="zoomValid"><desc>
+Tells if the zoom variables are valid.
+</desc></var>
+
+<var name="zoomComboIndex"><desc>
+Index into the BufferCombo, specifying a BufferElement.
+</desc></var>
+
+<var name="zoomElementIndex"><desc>
+Index into the BufferElement, a position in data.
+</desc></var>
+
+</body>
+</class>
+</xml>

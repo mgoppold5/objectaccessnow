@@ -1,0 +1,16 @@
+TokenReaderData
+TokenChooserData
+
+KeywordTokenFilterData
+CommentRemoveTokenFilterData
+
+SimpleReaderData
+
+CsvBaseReaderData
+JsonBaseReaderData
+XmlBaseReaderData
+
+CFamilySimpleTokenReader2Data
+
+TokenIntegerEvalData
+TokenStringEvalData

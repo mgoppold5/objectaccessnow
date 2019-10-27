@@ -1,0 +1,63 @@
+<xml version="1.1">
+<class name="SimpleReaderNode">
+<legal>
+Copyright (c) 2015-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+A node of the parsing stack for SimpleReader parser modules.
+</desc>
+<body>
+
+<var name="id"><desc>
+Use ParseNodeSimpleTypes.
+</desc></var>
+
+<constant name="STATE_FIRST_STEP"><desc>
+The state meaning that the first step has occured.
+</desc></constant>
+
+<constant name="STATE_MIDDLE"><desc>
+The state meaning that node is in the middle state.
+</desc></constant>
+
+<constant name="STATE_AT_END"><desc>
+The state meaning the node is at the end,
+and can go no further.
+</desc></constant>
+
+<var name="state"><desc>
+The parsing state the node is in.
+</desc></var>
+
+<var name="decoration"><desc>
+Tells if the node is the decoration of the stack,
+meaning its not a normal node.
+This is at the top of stack.
+There is zero, one, but not more.
+</desc></var>
+
+<var name="sym"><desc>
+The Token/Gram this node contains.
+</desc></var>
+
+<var name="err"><desc>
+An error this node contains.
+</desc></var>
+
+</body>
+</class>
+</xml>

@@ -1,0 +1,42 @@
+<xml version="1.1">
+<class name="ReadDirection">
+<legal>
+Copyright (c) 2015-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+An enum for specifying which direction in the file to
+read.
+</desc>
+<body>
+
+<constant name="DIRECTION_FIXED"><desc>
+Means that a read is intended for a spot in a stream.
+</desc></constant>
+
+<constant name="DIRECTION_FORWARD"><desc>
+Means that a read is intended for going in increasing position
+from a spot in the stream.
+</desc></constant>
+
+<constant name="DIRECTION_BACKWARD"><desc>
+Means that a read is intended for going in decreasing position
+from a spot in a stream.
+</desc></constant>
+
+</body>
+</class>
+</xml>

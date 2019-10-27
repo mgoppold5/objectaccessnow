@@ -1,0 +1,77 @@
+<xml verion="1.1">
+<class
+  name="ProblemContainer"
+  visibility="public"
+  package-ref="unnamed.family.compiler">
+<legal>
+Copyright (c) 2015 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+Stores a set of problems.
+</desc>
+<body>
+<var name="problems" type="ArrayList" visibility="public">
+<desc>
+The list of problems.
+</desc>
+</var>
+<var name="problemCount" type="int32" visibility="public">
+<desc>
+The count of all problems in this container.
+</desc>
+</var>
+<var name="runtimeErrorCount" type="int32" visibility="public">
+<desc>
+The count of runtime errors in this container.
+</desc>
+</var>
+</var>
+<var name="langErrorCount" type="int32" visibility="public">
+<desc>
+The count of language errors in this container.
+</desc>
+</var>
+<var name="langWarningCount" type="int32" visibility="public">
+<desc>
+The count of language warnings in this container.
+</desc>
+</var>
+<function name="reset" visibility="public">
+<desc>
+Deletes all problems from this container.
+</desc>
+</function>
+<function name="addProblem" visibility="public">
+<desc>
+Adds a problem to this container.
+</desc>
+<parameter-list>
+<var name="problemLevel" type="int32">
+<desc>
+The problem level for the given error/exception.
+</desc>
+</var>
+<var name="e" type="Throwable">
+<desc>
+The error/exception to add as a problem.
+</desc>
+</var>
+</parameter-list>
+</function>
+</body>
+</class>
+</xml>

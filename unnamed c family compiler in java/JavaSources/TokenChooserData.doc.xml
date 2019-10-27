@@ -1,0 +1,70 @@
+<xml verion="1.1">
+<class name="TokenChooserData">
+<legal>
+Copyright (c) 2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+This data stores token helpers,
+for the choosing process.
+</desc>
+<body>
+
+<constant name="STATE_CHOSEN"><desc>
+The state after a token helper has been chosen,
+or multiple token helpers have been chosen.
+</desc></constant>
+
+<var name="possibleHelpers"><desc>
+Initial given list of possible helpers.
+Helpers get removed from this list,
+as reading characters progresses.
+</desc></var>
+
+<var name="doneHelpers"><desc>
+Collected list of helpers,
+which are DONE, and had a match.
+</desc></var>
+
+<var name="chosenHelpers"><desc>
+<p>
+A subset of doneHelpers,
+which matched the longest range of characters.
+</p>
+<p>
+This is calculated after all helpers are DONE.
+</p>
+<p>
+Multiple helpers can be in this list,
+if they share the same long character range.
+</p>
+</desc></var>
+
+<var name="chosenHelper"><desc>
+Copied from chosenHelpers,
+if chosenHelpers only has one result.
+This variable is for convenience/ease-of-use.
+</desc></var>
+
+<var name="resultCount"><desc>
+The count inside chosenHelpers,
+after reaching the CHOSEN state.
+This can be zero, one, or greater.
+</desc></var>
+
+</body>
+</class>
+</xml>

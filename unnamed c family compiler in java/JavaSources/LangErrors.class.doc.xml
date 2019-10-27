@@ -1,0 +1,64 @@
+<xml verion="1.1">
+<class
+  name="LangErrors"
+  visibility="public"
+  package-ref="unnamed.family.compiler">
+<legal>
+Copyright (c) 2015 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+An enum for type codes for language errors.
+</desc>
+<body>
+<constant name="ERROR_COMMENT_UNTERMINATED" type="int32" visbility="public">
+<desc>
+A comment was unterminated.
+</desc>
+</constant>
+<constant name="ERROR_STRING_ESCAPE_BAD" type="int32" visbility="public">
+<desc>
+The string had a bad escape.
+</desc>
+</constant>
+<constant name="ERROR_STRING_UNTERMINATED" type="int32" visbility="public">
+<desc>
+The string was unterminated.
+</desc>
+</constant>
+<constant name="ERROR_XML_REFERENCE_BAD type="int32" visbility="public">
+<desc>
+There was an invalid xml reference.
+</desc>
+</constant>
+<constant name="ERROR_XML_COMMENT_UNTERMINATED type="int32" visbility="public">
+<desc>
+The xml comment was unterminated.
+</desc>
+</constant>
+<constant name="ERROR_XML_CDATA_UNTERMINATED type="int32" visbility="public">
+<desc>
+The xml CDATA was unterminated.
+</desc>
+</constant>
+<constant name="ERROR_BAD_SPAN type="int32" visbility="public">
+<desc>
+There was a bad span of characters in the context.
+</desc>
+</constant>
+</body>
+</class>
+</xml>

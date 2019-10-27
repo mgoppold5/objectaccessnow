@@ -1,0 +1,52 @@
+<xml version="1.1">
+<class
+  name="ProblemLevels"
+  visibility="public"
+  package-ref="unnamed.family.compiler">
+<legal>
+Copyright (c) 2015 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+An emum for the gravity of compiler errors/warnings.
+</desc>
+<body>
+<constant name="PROBLEM_SUCCESS" type="int32" visibility="public">
+<desc>
+Means no problem at all.
+</desc>
+</constant>
+<constant name="PROBLEM_RUNTIME_ERROR" type="int32" visibility="public">
+<desc>
+Means the compiler has a major exception.
+The current compilation is a failure.
+</desc>
+</constant>
+<constant name="PROBLEM_LANG_ERROR" type="int32" visibility="public">
+<desc>
+Means the compiler has a language error found in a source file.
+The current compilation will be a failure, but more errors can be collected.
+</desc>
+</constant>
+<constant name="PROBLEM_LANG_WARNING" type="int32" visibility="public">
+<desc>
+Means the compiler has a language warning from a position in a source file.
+The current compilation continues.
+</desc>
+</constant>
+</body>
+</class>
+</xml>

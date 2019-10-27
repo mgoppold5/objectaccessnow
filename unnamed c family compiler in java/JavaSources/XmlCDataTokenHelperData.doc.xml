@@ -1,0 +1,73 @@
+<xml verion="1.1">
+<class name="XmlCDataTokenHelperData">
+<legal>
+Copyright (c) 2014-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+XmlCDataTokenHelper's data.
+</desc>
+<body>
+
+<constant name="STATE_BEGIN_STRING"><desc>
+A mini state after reading characters which need to match beginString.
+</desc></constant>
+
+<constant name="STATE_MIDDLE_SPAN"><desc>
+A mini state after reading a regular cdata char.
+</desc></constant>
+
+<constant name="STATE_END_GREATER_THAN"><desc>
+A mini state after reading the greater than char
+that ends this cdata section.
+</desc></constant>
+
+<constant name="STATE_END_MARK1"><desc>
+One of a few mini states for reading the cdata ending mark.
+</desc></constant>
+
+<var name="currentIndex"><desc>
+A stream pointer which tells us where we are.
+</desc></var>
+
+<var name="beginString"><desc>
+The string that must be matched in order for this token helper
+to have a match.
+</desc></var>
+
+<var name="stringMatchIndex"><desc>
+Parameter for GeneralUtils.stringMatchSimple.
+</desc></var>
+
+<var name="stringMatchDidAdvance"><desc>
+Parameter for GeneralUtils.stringMatchSimple.
+</desc></var>
+
+<var name="stringMatchFinished"><desc>
+Parameter for GeneralUtils.stringMatchSimple.
+</desc></var>
+
+<var name="contentStartIndex"><desc>
+A start index for this cdata's inner content.
+</desc></var>
+
+<var name="contentPastIndex"><desc>
+A past index for this cdata's inner content.
+</desc></var>
+
+</body>
+</class>
+</xml>

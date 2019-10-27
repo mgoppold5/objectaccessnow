@@ -1,0 +1,58 @@
+<xml version="1.1">
+<class name="BaseModuleData">
+<legal>
+Copyright (c) 2014-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+This class basically defines a module's data.
+</desc>
+<body>
+	
+<var name="probBag"><desc>
+A place to store the modules collected problems.
+</desc></var>
+
+<var name="state"><desc>
+An integer which stores the basic state of the module.
+</desc></var>
+
+<var name="stuckState"><desc>
+In effect when the module is stuck, tells how
+badly stuck the module is.
+</desc></var>
+
+<var name="miniState"><desc>
+An additional integer which stores
+part of the module's state.
+</desc></var>
+
+<constant name="STATE_START"><desc>
+An initial state which can be used by any module.
+</desc></constant>
+
+<constant name="STATE_BUSY"><desc>
+A intermediate state that tells that the module
+is not done doing something.
+</desc></constant>
+
+<constant name="STATE_STUCK"><desc>
+A bad state in which the module got an error.
+</desc></constant>
+
+</body>
+</class>
+</xml>

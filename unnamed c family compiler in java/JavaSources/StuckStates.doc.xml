@@ -1,0 +1,44 @@
+<xml version="1.1">
+<class name="StuckStates">
+<legal>
+Copyright (c) 2015-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+An enum for how stuck a module/thing is.
+</desc>
+<body>
+
+<constant name="STUCK_UNINITIALIZED"><desc>
+An invalid stuck state.
+</desc></constant>
+
+<constant name="STUCK_RECOVERABLE"><desc>
+An stuck state, in which it is possible to recover, and move forward.
+</desc></constant>
+
+<constant name="STUCK_PERMANENT"><desc>
+A stuck state due to an unrecoverable error.
+</desc></constant>
+
+<constant name="STUCK_DUE_TO_DESCENDANTS"><desc>
+A stuck state, that is only stuck, because one of
+this module's descendants is stuck, in the tree of modules.
+</desc></constant>
+
+</body>
+</class>
+</xml>

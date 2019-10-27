@@ -1,0 +1,57 @@
+<xml version="1.1">
+<class name="ReadBufferPartial">
+<legal>
+Copyright (c) 2014-2017 Mike Goppold von Lobsdorf
+ 
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+<p>
+A buffer for a partial segment of a larger constant source.
+</p>
+<p>
+It has a begin position and end position within
+the larger source.
+The end position of the excerpt is calculated
+using the bufferCombo's length.
+The larger source is assumed to be read only, and further,
+it is assumed that the source is constant.
+</p>
+</desc>
+<body>
+
+<var name="isAtEnd"><desc>
+If the end position of the excerpt marks the end of the source.
+</desc></var>
+
+<var name="isAtBeginning"><desc>
+If startIndex marks the beginning of the source.
+</desc></var>
+
+<var name="extraBufData1"><desc>
+One of a few extra byte arrays which has been deallocated
+from this buffer, and can be re-used.  The purpose
+of keeping them is to improve speed.  I am not sure if
+this really offers a speed improvement, so I may delete
+these variables in the future.
+</desc></var>
+
+<function name="clear"><desc>
+Clears the buffer and increments versionNumber.
+</desc></function>
+
+</body>
+</class>
+</xml>

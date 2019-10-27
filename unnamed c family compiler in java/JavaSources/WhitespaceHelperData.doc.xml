@@ -1,0 +1,62 @@
+<xml version="1.1">
+<class name="WhitespaceHelperData">
+<legal>
+Copyright (c) 2015-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+Data for WhitespaceHelper.
+</desc>
+<body>
+
+<var name="contentType"><desc>
+The content type of the span.
+</desc></var>
+
+<constant name="CONTENT_TYPE_UNKNOWN"><desc>
+A type of unknown.  It is not yet known what the
+type of the span is.
+</desc></constant>
+
+<constant name="CONTENT_TYPE_TABS_AND_SPACES"><desc>
+A type of tabs and spaces whitespace.
+</desc></constant>
+
+<constant name="CONTENT_TYPE_RETURN"><desc>
+The type of a whitespace span, consisting of a newline.
+</desc></constant>
+
+<constant name="CONTENT_TYPE_NON_WHITESPACE"><desc>
+The type of a non whitespace span.
+</desc></constant>
+
+<var name="tabCount"><desc>
+If contentType is TABS_AND_SPACES, then this value
+is the count of tabs.
+</desc></var>
+
+<var name="spaceCount"><desc>
+If contentType is TABS_AND_SPACES, then this value
+is the count of spaces.
+</desc></var>
+
+<var name="prevCharWas13"><desc>
+If the previous return char was 0xD.
+</desc></var>
+
+</body>
+</class>
+</xml>

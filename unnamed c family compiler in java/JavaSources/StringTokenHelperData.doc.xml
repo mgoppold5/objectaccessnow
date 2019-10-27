@@ -1,0 +1,210 @@
+<xml version="1.1">
+<class name="StringTokenHelperData">
+<legal>
+Copyright (c) 2015-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+Token helper data, with options for enabling features.
+</desc>
+<body>
+
+<var name="enableInitialLetterL"><desc>
+Whether the token helper should allow the letter L,
+which denotes that the string is a long character string.
+</desc></var>
+
+<var name="enableCEscapes"><desc>
+Whether the token helper should allow regular C
+style escapes.
+</desc></var>
+
+<var name="enableCEscapeIgnoredReturn"><desc>
+Whether the token helper should allow a return
+to be ignored, where the return has a backslash before it.
+</desc></var>
+
+<var name="enableXmlReferences"><desc>
+Whether the token helper should allow xml references
+as string literal elements.
+</desc></var>
+
+<var name="quoteBeginChar"><desc>
+The beginning delimiter, usually some type of quote.
+</desc></var>
+
+<var name="quoteEndChar"><desc>
+The ending delimiter, usually some type of quote.
+</desc></var>
+
+<var name="tokenCategoryId"><desc>
+The category id, which should be used when creating
+the token.  It should be character or string.
+</desc></var>
+
+<var name="tokenCategoryId"><desc>
+The token id, which should be used when creating
+the token.  It should be character or string.
+</desc></var>
+
+<var name="strTok"><desc>
+The resulting token.
+</desc></var>
+
+<constant name="STATE_INITIAL_LETTER_L"><desc>
+The mini state after reading the initial letter L,
+for long character strings.
+</desc></constant>
+
+<constant name="STATE_QUOTE"><desc>
+The mini state after reading the beginning quote character.
+</desc></constant>
+
+<constant name="STATE_QUOTE_END"><desc>
+The mini state after reading the ending quote character.
+</desc></constant>
+
+<constant name="STATE_SPAN"><desc>
+The mini state after reading some regular string span text.
+</desc></constant>
+
+<constant name="STATE_ESCAPE"><desc>
+The mini state after reading a backslash.
+</desc></constant>
+
+<constant name="STATE_ESCAPE_LETTER_X"><desc>
+The mini state after reading a letter x,
+for a hexidecimal escape.
+</desc></constant>
+
+<constant name="STATE_ESCAPE_INTEGER"><desc>
+The mini state after reading some integer digits,
+of an escape.
+</desc></constant>
+
+<constant name="STATE_ESCAPE_NAME"><desc>
+The mini state after reading a special letter,
+for a type of escape.
+</desc></constant>
+
+<constant name="STATE_ESCAPE_VERBATIM"><desc>
+The mini state after reading a character that
+should be considered verbatim, in an escape.
+</desc></constant>
+
+<constant name="STATE_ESCAPE_IGNORED_RETURN"><desc>
+The mini state after reading an ignored return.
+</desc></constant>
+
+<constant name="STATE_REFERENCE"><desc>
+The mini state after reading an ampresand.
+</desc></constant>
+
+<constant name="STATE_REFERENCE_NAME"><desc>
+The mini state after reading a reference's name characters.
+</desc></constant>
+
+<constant name="STATE_REFERENCE_NAME_END"><desc>
+The mini state after reading the semicolon of an entity reference.
+</desc></constant>
+
+<constant name="STATE_REFERENCE_NUMBER"><desc>
+The mini state after reading the pound sign of a reference.
+</desc></constant>
+
+<constant name="STATE_REFERENCE_LETTER_X"><desc>
+The mini state after reading the letter x of a reference.
+</desc></constant>
+
+<constant name="STATE_REFERENCE_INTEGER"><desc>
+The mini state after reading a reference's integer digits.
+</desc></constant>
+
+<constant name="STATE_REFERENCE_INTEGER_END"><desc>
+The mini state after reading the semicolon of a character reference.
+</desc></constant>
+
+<var name="badSpanStartIndex"><desc>
+The start index of a bad span.
+</desc></var>
+
+<var name="badSpanPastIndex"><desc>
+The past index of a bad span.
+</desc></var>
+
+<var name="spanStartIndex"><desc>
+The start index of a regular string span.
+</desc></var>
+
+<var name="spanPastIndex"><desc>
+The past index of a regular string span.
+</desc></var>
+
+<var name="escapeStartIndex"><desc>
+The start index of an escape.
+</desc></var>
+
+<var name="escapePastIndex"><desc>
+The past index of an escape.
+</desc></var>
+
+<var name="refStartIndex"><desc>
+The start index of an xml reference.
+</desc></var>
+
+<var name="refPastIndex"><desc>
+The past index of an xml reference.
+</desc></var>
+
+<var name="radix" type="int32"><desc>
+A radix for the integer.
+</desc></var>
+
+<var name="integerStartIndex"><desc>
+The start index of, either an escape integer, or a reference integer.
+</desc></var>
+
+<var name="integerPastIndex"><desc>
+The past index of, either an escape integer, or a reference integer.
+</desc></var>
+
+<var name="verbatimStartIndex"><desc>
+The start index of a verbatim escape char.
+</desc></var>
+
+<var name="verbatimPastIndex"><desc>
+The past index of a verbatim escape char.
+</desc></var>
+
+<var name="nameStartIndex"><desc>
+The start index of, either an escape special char, or an entity reference name.
+</desc></var>
+
+<var name="namePastIndex"><desc>
+The past index of, either an escape special char, or an entity reference name.
+</desc></var>
+
+<var name="prevCharWas13" type="bool"><desc>
+If the previous character was 0xD.
+</desc></var>
+
+<var name="escapeTokenId" type="int32"><desc>
+The Symbol id of the special name/char escape token.
+</desc></var>
+
+</body>
+</class>
+</xml>

@@ -1,0 +1,61 @@
+<xml version="1.1">
+<class name="TokenFloatFull">
+<legal>
+Copyright (c) 2015-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+A floating point number literal.
+</desc>
+<body>
+
+<var name="radix"><desc>
+The radix for all of this float's integer/fraction/exponent parts.
+</desc></var>
+
+<var name="size"><desc>
+The size of this float in bits.  Can be zero to mean this
+float's size wasnt specified.
+</desc></var>
+
+<var name="flagNumberNeg"><desc>
+True if the integer/fraction, is negative.
+</desc></var>
+
+<var name="flagExponentNeg"><desc>
+True if the exponent is negative.
+</desc></var>
+
+<var name="integer"><desc>
+The integer before the radix point.
+Can be null.
+</desc></var>
+
+<var name="fraction"><desc>
+The integer after the radix point, which has this float's
+fractional digits.
+Can be null.
+</desc></var>
+
+<var name="exponent"><desc>
+The integer after the exponent mark, which has this float's
+exponent digits.
+Can be null.
+</desc></var>
+
+</body>
+</class>
+</xml>

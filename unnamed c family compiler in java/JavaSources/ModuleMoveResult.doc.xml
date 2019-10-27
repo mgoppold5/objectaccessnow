@@ -1,0 +1,46 @@
+<xml version="1.1">
+<class name="ModuleMoveResult">
+<legal>
+Copyright (c) 2015-2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+An enum, and return code,
+for the result of a module's move function.
+</desc>
+<body>
+	
+<constant name="SUCCESS"><desc>
+Means that the move was successful.
+</desc></constant>
+
+<constant name="AT_END"><desc>
+Means that the module could not do the move,
+because it is at the end, in the given direction.
+</desc></constant>
+
+<constant name="STUCK"><desc>
+Means that the module is stuck now.
+</desc></constant>
+
+<constant name="INVALID"><desc>
+Means that the move direction was invalid for this module
+or node.
+</desc></constant>
+
+</body>
+</class>
+</xml>
