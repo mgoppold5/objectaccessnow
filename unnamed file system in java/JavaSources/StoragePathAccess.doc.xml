@@ -1,0 +1,160 @@
+<xml version="1.1">
+<interface name="StoragePathAccess">
+<legal>
+Copyright (c) 2017 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+Provides access to a path/tree of files,
+aka a file system.
+It is based on new ideas,
+since the older interface FileSystem.
+</desc>
+<body>
+
+<function name="initFileNumberingEra"><desc>
+Initializes an era, which stores file handles.
+</desc></function>
+
+<function name="deinitFileNumberingEra"><desc>
+Breaks-down/Closes the current era,
+closing all files.
+A new era can be started afterwords.
+</desc></function>
+
+<function name="close"><desc>
+Completely closes up the object,
+and the object cannot be used further.
+</desc></function>
+
+<function name="getIsThreadSafe"><desc>
+Returns true if this object is thread safe.
+</desc></function>
+
+<function name="getRights"><desc>
+Returns current read/write permissions.
+</desc></function>
+
+<function name="getSeparatorChar"><desc>
+Returns the current separator character,
+used to seperate directory-name from directory-name,
+and directory-name from file-name.
+</desc></function>
+
+<function name="getFileNumberingEra"><desc>
+The file numbering era is identified by an integer.
+If you plan on having more than one era of open files,
+its best to use different integers.
+</desc></function>
+
+<function name="listDirectory"><desc>
+Lists a directory.
+</desc></function>
+
+<function name="getFileType"><desc>
+From a path, returns a type from FileTypes.
+See FileTypes.
+</desc></function>
+
+<function name="createDirectory"><desc>
+Given a parentDir, and a directory-name,
+creates a directory.
+</desc></function>
+
+<function name="deleteEmptyDirectory"><desc>
+Given a directory-path, deletes an empty directory.
+</desc></function>
+
+<function name="createFile"><desc>
+Given a parentDir, and a file-name,
+creates a zero-length file.
+</desc></function>
+
+<function name="deleteFile"><desc>
+Given a file-path, deletes a file.
+</desc></function>
+
+<function name="openFile"><desc>
+Given a file-path, and desired rights flags,
+returns a file handle.
+</desc></function>
+
+<function name="initFileClientUnitSize"><desc>
+Sets a file's clientUnitSize.
+This must be set before initFile is called.
+</desc></function>
+
+<function name="initFileMemoryUnitSize"><desc>
+Sets a file's memoryUnitSize.
+This must be set before initFile is called.
+</desc></function>
+
+<function name="initFileStrictAlignSize"><desc>
+Sets a file's strictAlignSize.
+This must be set before initFile is called.
+</desc></function>
+
+<function name="initFile"><desc>
+Initializes/Prepares a file, for reading/writing,
+correcting properties as needed.
+</desc></function>
+
+<function name="closeFile"><desc>
+Completely closes up the file,
+and the file cannot be used further.
+</desc></function>
+
+<function name="getFileHaveInit"><desc>
+Returns true if the file has been initialized,
+with a call to initFile.
+</desc></function>
+
+<function name="getFileClientUnitSize"><desc>
+See StorageRangeMetrics.
+</desc></function>
+
+<function name="getFileMemoryUnitSize"><desc>
+See StorageRangeMetrics.
+</desc></function>
+
+<function name="getFileStrictAlignSize"><desc>
+See StorageRangeMetrics.
+</desc></function>
+
+<function name="getFileLength"><desc>
+See StorageRangeAccess.getLength.
+</desc></function>
+
+<function name="setFileLength"><desc>
+Truncates the file.
+</desc></function>
+
+<function name="getFileSuggestLength"><desc>
+See StorageRangeAccess.getSuggestLength.
+</desc></function>
+
+<function name="setFileSuggestLength"><desc>
+Sets the file's suggestLength.
+</desc></function>
+
+<function name="accessFile"><desc>
+Reads/Overwrites/Appends with a file.
+Given fileHandle, storagePointer, and buffer info.
+</desc></function>
+
+</body>
+</interface>
+</xml>

@@ -1,0 +1,54 @@
+<xml version="1.1">
+<class
+  name="FileRef"
+  visibility="public"
+  package-ref="unnamed.file.system">
+<legal>
+Copyright (c) 2014-2016 Mike Goppold von Lobsdorf
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+</legal>
+<desc>
+<p>
+A file data structure which stores what is
+needed to access a file.
+</p>
+<p>
+This object is meant to be owned and used
+by a single thread.
+</p>
+</desc>
+<body>
+<var name="filePath" type="String" visibility="public">
+<desc>
+A path to the file, relative to the filesystem root.
+</body>
+</var>
+<var name="fs" type="FileSystem" visibility="public">
+<desc>
+The file's filesystem.  Can be null when this object
+isnt fully set up.
+</desc>
+</var>
+<var name="fileHandle" type="int32" visibility="public">
+<desc>
+The file handle of an open file.  Can be zero, to
+denote that a file isnt open, and that this object isnt
+fully set up.
+</desc>
+</var>
+</body>
+</class>
+</xml>
