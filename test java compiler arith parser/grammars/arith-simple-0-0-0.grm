@@ -1,0 +1,62 @@
+/*
+ * Copyright (c) 2016 Mike Goppold von Lobsdorf
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+
+// Arithmetic test grammar,
+// deterministic grammar
+
+// previous version,
+// in previous naming convention,
+// was "arith1.grm"
+
+%include_grammar "arith-full-tokens.grm";
+%include_grammar "arith-full-grams.grm";
+
+%root_var S_PRIME;
+%end_marker TOKEN_END_OF_STREAM;
+
+%left S_PRIME
+  %right S TOKEN_END_OF_STREAM;
+
+%left S
+  %right stmtSeq;
+
+%left stmtSeq
+  %right %reduce GRAM_SEQUENCE
+  %right stmtSeq stmt %reduce GRAM_SEQUENCE;
+
+%left stmt
+  %right exp TOKEN_SEMICOLON %reduce GRAM_STATEMENT_EXPRESSION;
+
+%left exp
+  %right expAdd %reduce GRAM_EXPRESSION_SIMPLE;
+
+%left expAdd
+  %right expAdd TOKEN_PLUS expMult %reduce GRAM_EXPRESSION_BINARY
+  %right expAdd TOKEN_MINUS expMult %reduce GRAM_EXPRESSION_BINARY
+  %right expMult %reduce GRAM_EXPRESSION_SIMPLE;
+
+%left expMult
+  %right expMult TOKEN_TIMES expAtom %reduce GRAM_EXPRESSION_BINARY
+  %right expMult TOKEN_DIVIDE expAtom %reduce GRAM_EXPRESSION_BINARY
+  %right expAtom %reduce GRAM_EXPRESSION_SIMPLE;
+
+%left expAtom
+  %right TOKEN_INTEGER_FULL %reduce GRAM_EXPRESSION_SIMPLE
+  %right TOKEN_MINUS expAtom %reduce GRAM_EXPRESSION_UNARY_PREFIX
+  %right TOKEN_LPAREN exp TOKEN_RPAREN
+    %reduce GRAM_EXPRESSION_PAREN;
