@@ -1,0 +1,11 @@
+<xml version="1.1">
+<def>
+<logic-def>
+  <use-defs>
+    <use name="c-sugar-list"/>
+    <use name="features-has-member-function"/>
+  </use-defs>	  
+</logic-def>
+</def>
+</xml>
+

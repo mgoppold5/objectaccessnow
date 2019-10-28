@@ -1,0 +1,15 @@
+<xml version="1.1">
+<def>
+<logic-feature-list-def>
+  <feature name="chip-cpu" status="on"/>
+  <feature name="memory-stack" status="on"/>
+  <feature name="ref-weak" status="on"/>
+  <feature name="ref-auto" status="on"/>
+  <feature name="exception" status="on"/>
+  <feature name="checking-array-index" status="on"/>
+  <feature name="checking-null" status="on"/>
+  <feature name="checking-cast" status="on"/>
+  <feature name="function-member" status="on"/>
+</logic-feature-list-def>
+</def>
+</xml>
