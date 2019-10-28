@@ -1,0 +1,169 @@
+/*
+ * Copyright (c) 2016 Mike Goppold von Lobsdorf
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+
+
+%include_grammar "c-sugar-basic-tokens.grm";
+
+
+%token TOKEN_IDENTIFIER                     %id 10 13;
+
+
+//%token TOKEN_INTEGER_FULL                   %id 20 22;
+%token TOKEN_FLOAT_FULL                     %id 20 24;
+
+
+%token TOKEN_STRING                         %id 60 61;
+
+
+%token TOKEN_CHARACTER                      %id 80 81;
+
+
+%token TOKEN_KEYWORD_NULL                   %id 200 201;
+%token TOKEN_KEYWORD_FALSE                  %id 200 202;
+%token TOKEN_KEYWORD_TRUE                   %id 200 203;
+
+
+%token TOKEN_COMMA                          %id 400 401;
+%token TOKEN_COLON                          %id 400 402;
+//%token TOKEN_SEMICOLON                      %id 400 403;
+%token TOKEN_DOT                            %id 400 404;
+
+%token TOKEN_LPAREN                         %id 400 411;
+%token TOKEN_RPAREN                         %id 400 412;
+%token TOKEN_LBRACK                         %id 400 413;
+%token TOKEN_RBRACK                         %id 400 414;
+%token TOKEN_LBRACE                         %id 400 415;
+%token TOKEN_RBRACE                         %id 400 416;
+
+
+%token TOKEN_ASSIGN                         %id 2000 2001;
+
+//%token TOKEN_PLUS                           %id 2000 2011;
+//%token TOKEN_MINUS                          %id 2000 2012;
+//%token TOKEN_TIMES                          %id 2000 2013;
+//%token TOKEN_DIVIDE                         %id 2000 2014;
+//%token TOKEN_MOD                            %id 2000 2015;
+//%token TOKEN_UMINUS                         %id 2000 2016;
+
+%token TOKEN_PLUS_ASSIGN                    %id 2000 2021;
+%token TOKEN_MINUS_ASSIGN                   %id 2000 2022;
+%token TOKEN_TIMES_ASSIGN                   %id 2000 2023;
+%token TOKEN_DIVIDE_ASSIGN                  %id 2000 2024;
+%token TOKEN_MOD_ASSIGN                     %id 2000 2025;
+
+%token TOKEN_AND_BITWISE                    %id 2000 2041;
+%token TOKEN_OR_BITWISE                     %id 2000 2042;
+%token TOKEN_XOR_BITWISE                    %id 2000 2043;
+
+%token TOKEN_AND_BITWISE_ASSIGN             %id 2000 2051;
+%token TOKEN_OR_BITWISE_ASSIGN              %id 2000 2052;
+%token TOKEN_XOR_BITWISE_ASSIGN             %id 2000 2053;
+
+%token TOKEN_NOT_BITWISE                    %id 2000 2061;
+
+%token TOKEN_SHIFT_LEFT                     %id 2000 2071;
+%token TOKEN_SHIFT_RIGHT                    %id 2000 2072;
+%token TOKEN_SHIFT_RIGHT_LOGICAL            %id 2000 2074;
+
+%token TOKEN_SHIFT_LEFT_ASSIGN              %id 2000 2081;
+%token TOKEN_SHIFT_RIGHT_ASSIGN             %id 2000 2082;
+%token TOKEN_SHIFT_RIGHT_LOGICAL_ASSIGN     %id 2000 2084;
+
+%token TOKEN_AND_LOGICAL                    %id 2000 2091;
+%token TOKEN_OR_LOGICAL                     %id 2000 2092;
+
+%token TOKEN_NOT_LOGICAL                    %id 2000 2101;
+
+%token TOKEN_EQUAL                          %id 2000 2111;
+%token TOKEN_NOT_EQUAL                      %id 2000 2112;
+
+%token TOKEN_LESS                           %id 2000 2121;
+%token TOKEN_LESS_EQUAL                     %id 2000 2122;
+%token TOKEN_GREATER                        %id 2000 2123;
+%token TOKEN_GREATER_EQUAL                  %id 2000 2124;
+
+
+%token TOKEN_KEYWORD_NEW                    %id 2200 2201;
+%token TOKEN_KEYWORD_CAST                   %id 2200 2202;
+%token TOKEN_KEYWORD_INSTANCE_OF            %id 2200 2203;
+
+%token TOKEN_KEYWORD_PAREN_PARAMETERS       %id 2200 2211;
+%token TOKEN_KEYWORD_PAREN_PARAMETERS_DEFINITION
+                                            %id 2200 2212;
+%token TOKEN_KEYWORD_PAREN_EXPRESSION
+                                            %id 2200 2213;
+%token TOKEN_KEYWORD_PAREN_TYPE             %id 2200 2214;
+%token TOKEN_KEYWORD_PAREN_TYPE_PARAMETERS  %id 2200 2215;
+%token TOKEN_KEYWORD_PAREN_TYPE_PARAMETERS_DEFINITION
+                                            %id 2200 2216;
+
+%token TOKEN_KEYWORD_PAREN_ARRAY_ACCESS     %id 2200 2221;
+%token TOKEN_KEYWORD_PAREN_ARRAY_INIT       %id 2200 2222;
+%token TOKEN_KEYWORD_PAREN_LIST_ACCESS      %id 2200 2223;
+%token TOKEN_KEYWORD_PAREN_LIST_INIT        %id 2200 2224;
+%token TOKEN_KEYWORD_PAREN_DICT_ACCESS      %id 2200 2225;
+%token TOKEN_KEYWORD_PAREN_DICT_INIT        %id 2200 2226;
+
+
+%token TOKEN_KEYWORD_IF                     %id 2500 2551;
+%token TOKEN_KEYWORD_THEN                   %id 2500 2552;
+%token TOKEN_KEYWORD_ELSE                   %id 2500 2553;
+%token TOKEN_KEYWORD_WHILE                  %id 2500 2554;
+%token TOKEN_KEYWORD_TRY                    %id 2500 2555;
+%token TOKEN_KEYWORD_CATCH                  %id 2500 2556;
+%token TOKEN_KEYWORD_SWITCH                 %id 2500 2557;
+
+%token TOKEN_KEYWORD_BREAK                  %id 2500 2561;
+%token TOKEN_KEYWORD_CONTINUE               %id 2500 2562;
+%token TOKEN_KEYWORD_RETURN                 %id 2500 2563;
+%token TOKEN_KEYWORD_THROW                  %id 2500 2564;
+
+%token TOKEN_KEYWORD_CASE                   %id 2500 2572;
+%token TOKEN_KEYWORD_DEFAULT                %id 2500 2573;
+
+
+%token TOKEN_KEYWORD_CLASS                  %id 3000 3021;
+%token TOKEN_KEYWORD_INTERFACE              %id 3000 3022;
+%token TOKEN_KEYWORD_EXTENDS                %id 3000 3023;
+%token TOKEN_KEYWORD_IMPLEMENTS             %id 3000 3024;
+
+%token TOKEN_KEYWORD_IMPORT                 %id 3000 3031;
+%token TOKEN_KEYWORD_USING                  %id 3000 3032;
+%token TOKEN_KEYWORD_PACKAGE                %id 3000 3033;
+%token TOKEN_KEYWORD_NAMESPACE              %id 3000 3034;
+
+
+%token TOKEN_KEYWORD_PUBLIC                 %id 3200 3201;
+%token TOKEN_KEYWORD_INTERNAL               %id 3200 3202;
+%token TOKEN_KEYWORD_PROTECTED              %id 3200 3203;
+%token TOKEN_KEYWORD_PRIVATE                %id 3200 3204;
+
+%token TOKEN_KEYWORD_CONSTANT               %id 3200 3211;
+%token TOKEN_KEYWORD_FINAL                  %id 3200 3212;
+
+%token TOKEN_KEYWORD_STATIC                 %id 3200 3221;
+%token TOKEN_KEYWORD_VIRTUAL                %id 3200 3222;
+%token TOKEN_KEYWORD_ABSTRACT               %id 3200 3223;
+%token TOKEN_KEYWORD_OVERRIDE               %id 3200 3224;
+
+
+// Special Grammar only tokens
+//
+
+%token TOKEN_TYPE_LIKE                      %id 5000 5001;
+%token TOKEN_EXPRESSION_LIKE                %id 5000 5002;

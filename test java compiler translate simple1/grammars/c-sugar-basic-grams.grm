@@ -1,0 +1,35 @@
+/*
+ * Copyright (c) 2016 Mike Goppold von Lobsdorf
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+
+
+%gram GRAM_SEQUENCE                         %id 210 214;
+
+
+%gram GRAM_EXPRESSION_UNARY_PREFIX          %id 2300 2301;
+%gram GRAM_EXPRESSION_UNARY_POSTFIX         %id 2300 2302;
+%gram GRAM_EXPRESSION_BINARY                %id 2300 2303;
+
+%gram GRAM_EXPRESSION_SIMPLE                %id 2300 2311;
+%gram GRAM_EXPRESSION_PAREN                 %id 2300 2312;
+//%gram GRAM_EXPRESSION_PAREN_EMPTY           %id 2300 2313;
+//%gram GRAM_EXPRESSION_BRACK                 %id 2300 2314;
+//%gram GRAM_EXPRESSION_BRACK_EMPTY           %id 2300 2315;
+
+
+%gram GRAM_STATEMENT_EXPRESSION             %id 2600 2601;
+//%gram GRAM_STATEMENT_VARIABLE_DEF           %id 2600 2602;
