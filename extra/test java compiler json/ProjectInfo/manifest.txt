@@ -1,0 +1,2 @@
+Main-Class: JsonTest
+Class-Path: unnamed-common.jar unnamed-file-system.jar unnamed-family-compiler.jar
