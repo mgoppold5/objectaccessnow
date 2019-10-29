@@ -1,0 +1,2 @@
+Main-Class: StoragePathTest
+Class-Path: unnamed-common.jar unnamed-file-system.jar
