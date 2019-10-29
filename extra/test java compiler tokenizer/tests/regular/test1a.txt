@@ -1,0 +1,10 @@
+0
+1024_1024
+0xdeaf_beef
+0757
+.2_5
+23.2_5e-6
+0b101_1
+0hdead_beef
+0b11_01.10_1p-1_0
+0hfa_ce.ab_cdp+dc_ba

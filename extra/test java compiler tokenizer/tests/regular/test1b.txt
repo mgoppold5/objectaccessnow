@@ -1,0 +1,10 @@
+0 // CFamilyIntTokenHelper
+1024_1024 // CFamilyIntTokenHelper
+0xdeaf_beef // CFamilyIntTokenHelper
+0757 // CFamilyOctalIntTokenHelper
+.2_5 // CFamilyFloatTokenHelper
+23.2_5e-6 // CFamilyFloatTokenHelper
+0b101_1 // ExtendedIntTokenHelper
+0hdead_beef // ExtendedIntTokenHelper
+0b11_01.10_1p-1_0 // ExtendedFloatTokenHelper
+0hfa_ce.ab_cdp+dc_ba // ExtendedFloatTokenHelper
