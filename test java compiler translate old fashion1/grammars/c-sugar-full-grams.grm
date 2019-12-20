@@ -1,0 +1,100 @@
+/*
+ * Copyright (c) 2016 Mike Goppold von Lobsdorf
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+
+
+%include_grammar "c-sugar-basic-grams.grm";
+
+
+//%gram GRAM_EXPRESSION_SIMPLE                %id 2300 2311;
+//%gram GRAM_EXPRESSION_PAREN                 %id 2300 2312;
+%gram GRAM_EXPRESSION_PAREN_EMPTY           %id 2300 2313;
+%gram GRAM_EXPRESSION_BRACK                 %id 2300 2314;
+%gram GRAM_EXPRESSION_BRACK_EMPTY           %id 2300 2315;
+
+%gram GRAM_EXPRESSION_ARRAY_ACCESS          %id 2300 2321;
+%gram GRAM_EXPRESSION_ARRAY_TYPE            %id 2300 2322;
+%gram GRAM_EXPRESSION_FUNCTION_CALL         %id 2300 2323;
+%gram GRAM_EXPRESSION_ALLOCATION_CALL       %id 2300 2324;
+%gram GRAM_EXPRESSION_ALLOCATION_ARRAY      %id 2300 2325;
+%gram GRAM_EXPRESSION_CAST                  %id 2300 2326;
+%gram GRAM_EXPRESSION_INSTANCE_OF           %id 2300 2327;
+
+%gram GRAM_EXPRESSION_TYPE_WITH_PARAMETERS  %id 2300 2331;
+
+
+//%gram GRAM_STATEMENT_EXPRESSION             %id 2600 2601;
+%gram GRAM_STATEMENT_VARIABLE_DEF           %id 2600 2602;
+
+%gram GRAM_STATEMENT_IF_THEN                %id 2600 2651;
+%gram GRAM_STATEMENT_IF_THEN_ELSE           %id 2600 2652;
+%gram GRAM_STATEMENT_WHILE                  %id 2600 2653;
+%gram GRAM_STATEMENT_TRY                    %id 2600 2654;
+%gram GRAM_STATEMENT_CATCH                  %id 2600 2655;
+%gram GRAM_STATEMENT_SWITCH                 %id 2600 2656;
+
+%gram GRAM_STATEMENT_BREAK                  %id 2600 2661;
+%gram GRAM_STATEMENT_BREAK_WITH_LABEL       %id 2600 2662;
+%gram GRAM_STATEMENT_CONTINUE               %id 2600 2663;
+%gram GRAM_STATEMENT_CONTINUE_WITH_LABEL
+                                            %id 2600 2664;
+%gram GRAM_STATEMENT_RETURN                 %id 2600 2665;
+%gram GRAM_STATEMENT_RETURN_WITH_EXPRESSION
+                                            %id 2600 2666;
+%gram GRAM_STATEMENT_THROW                  %id 2600 2667;
+
+%gram GRAM_STATEMENT_LABEL                  %id 2600 2671;
+%gram GRAM_STATEMENT_CASE                   %id 2600 2672;
+%gram GRAM_STATEMENT_DEFAULT                %id 2600 2673;
+
+
+%gram GRAM_FUNCTION_INIT                    %id 3050 3051;
+%gram GRAM_FUNCTION_DEF_SIMPLE              %id 3050 3052;
+%gram GRAM_FUNCTION_DEF_FULL                %id 3050 3053;
+%gram GRAM_FUNCTION_DEF_FULL_WITH_MODIFIERS
+                                            %id 3050 3054;
+%gram GRAM_FUNCTION_DEF_FULL_WITH_INIT      %id 3050 3055;
+%gram GRAM_FUNCTION_DEF_FULL_WITH_MODIFIERS_WITH_INIT
+                                            %id 3050 3056;
+
+%gram GRAM_VARIABLE_INIT                    %id 3050 3061;
+%gram GRAM_VARIABLE_DEF_SIMPLE              %id 3050 3062;
+%gram GRAM_VARIABLE_DEF_FULL                %id 3050 3063;
+%gram GRAM_VARIABLE_DEF_FULL_WITH_MODIFIERS
+                                            %id 3050 3064;
+%gram GRAM_VARIABLE_DEF_FULL_WITH_INIT      %id 3050 3065;
+%gram GRAM_VARIABLE_DEF_FULL_WITH_MODIFIERS_WITH_INIT
+                                            %id 3050 3066;
+
+%gram GRAM_CLASS_DEF                        %id 3050 3071;
+%gram GRAM_CLASS_DEF_WITH_MODIFIERS         %id 3050 3072;
+%gram GRAM_MODULE_EXTENDS                   %id 3050 3073;
+%gram GRAM_MODULE_IMPLEMENTS                %id 3050 3074;
+%gram GRAM_MODULE_EXTENDS_AND_IMPLEMENTS    %id 3050 3075;
+
+%gram GRAM_PACKAGE_DEF                      %id 3050 3081;
+%gram GRAM_IMPORT_DEF                       %id 3050 3082;
+
+
+%gram GRAM_STATEMENT_BLOCK                  %id 3100 3101;
+%gram GRAM_STATEMENT_BLOCK_EMPTY            %id 3100 3102;
+%gram GRAM_VARIABLE_BLOCK                   %id 3100 3103;
+%gram GRAM_VARIABLE_BLOCK_EMPTY             %id 3100 3104;
+%gram GRAM_CLASS_BLOCK                      %id 3100 3105;
+%gram GRAM_CLASS_BLOCK_EMPTY                %id 3100 3106;
+%gram GRAM_PACKAGE_BLOCK                    %id 3100 3107;
+%gram GRAM_PACKAGE_BLOCK_EMPTY              %id 3100 3108;

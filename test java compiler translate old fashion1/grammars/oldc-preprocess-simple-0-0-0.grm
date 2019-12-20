@@ -1,0 +1,528 @@
+/*
+ * Copyright (c) 2016-2017, 2019 Mike Goppold von Lobsdorf
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+
+
+// oldc preprocessor grammar
+
+
+%include_grammar "c-sugar-full-tokens.grm";
+%include_grammar "c-sugar-full-grams.grm";
+
+
+%prec_spectrum PREC_1_EXPRESSIONS;
+
+%left_assoc TOKEN_COMMA;
+%left_assoc TOKEN_KEYWORD_CAST TOKEN_KEYWORD_INSTANCE_OF;
+
+%right_assoc
+  TOKEN_ASSIGN
+  TOKEN_PLUS_ASSIGN TOKEN_MINUS_ASSIGN TOKEN_TIMES_ASSIGN TOKEN_DIVIDE_ASSIGN
+    TOKEN_MOD_ASSIGN
+  TOKEN_AND_BITWISE_ASSIGN TOKEN_OR_BITWISE_ASSIGN TOKEN_XOR_BITWISE_ASSIGN
+  TOKEN_SHIFT_LEFT_ASSIGN
+    TOKEN_SHIFT_RIGHT_ASSIGN TOKEN_SHIFT_RIGHT_LOGICAL_ASSIGN;
+%left_assoc TOKEN_OR_LOGICAL;
+%left_assoc TOKEN_AND_LOGICAL;
+%right_assoc TOKEN_NOT_LOGICAL;
+%left_assoc TOKEN_OR_BITWISE;
+%left_assoc TOKEN_XOR_BITWISE;
+%left_assoc TOKEN_AND_BITWISE;
+%right_assoc TOKEN_NOT_BITWISE;
+%left_assoc TOKEN_EQUAL TOKEN_NOT_EQUAL;
+%left_assoc TOKEN_LESS TOKEN_LESS_EQUAL TOKEN_GREATER TOKEN_GREATER_EQUAL;
+%left_assoc TOKEN_SHIFT_LEFT TOKEN_SHIFT_RIGHT TOKEN_SHIFT_RIGHT_LOGICAL;
+%left_assoc TOKEN_PLUS TOKEN_MINUS;
+%left_assoc TOKEN_TIMES TOKEN_DIVIDE TOKEN_MOD;
+%left_assoc TOKEN_UMINUS;
+
+//%left_assoc TOKEN_LPAREN TOKEN_LBRACK TOKEN_DOT;
+
+
+%prec_spectrum PREC_2_DANGLING_ELSE;
+
+%non_assoc TOKEN_KEYWORD_THEN;
+%non_assoc TOKEN_KEYWORD_ELSE;
+
+
+%prec_spectrum PREC_3_TYPE_EXPRESSIONS;
+
+%non_assoc TOKEN_EXPRESSION_LIKE;
+%non_assoc TOKEN_TYPE_LIKE TOKEN_RPAREN;
+
+
+%root_var S_PRIME;
+%end_marker TOKEN_END_OF_STREAM;
+
+%left S_PRIME
+  %right S TOKEN_END_OF_STREAM;
+
+%left S
+  %right packageContentSeq;
+
+
+// GENERAL STUFF
+//
+
+%left accessModifierSeq
+  %right accessModifier %reduce GRAM_SEQUENCE
+  %right accessModifierSeq accessModifier %reduce GRAM_SEQUENCE;
+
+%left accessModifier
+  %right TOKEN_KEYWORD_PUBLIC %reduce GRAM_SEQUENCE
+  %right TOKEN_KEYWORD_INTERNAL %reduce GRAM_SEQUENCE
+  %right TOKEN_KEYWORD_PROTECTED %reduce GRAM_SEQUENCE
+  %right TOKEN_KEYWORD_PRIVATE %reduce GRAM_SEQUENCE
+  %right TOKEN_KEYWORD_CONSTANT %reduce GRAM_SEQUENCE
+  %right TOKEN_KEYWORD_FINAL %reduce GRAM_SEQUENCE
+  %right TOKEN_KEYWORD_STATIC %reduce GRAM_SEQUENCE
+  %right TOKEN_KEYWORD_VIRTUAL %reduce GRAM_SEQUENCE
+  %right TOKEN_KEYWORD_ABSTRACT %reduce GRAM_SEQUENCE
+  %right TOKEN_KEYWORD_OVERRIDE %reduce GRAM_SEQUENCE;
+
+%left identifierWalk
+  %right TOKEN_IDENTIFIER %reduce GRAM_EXPRESSION_SIMPLE
+  %right identifierWalk TOKEN_DOT TOKEN_IDENTIFIER
+    %reduce GRAM_EXPRESSION_BINARY;
+
+%left identifierList
+  %right TOKEN_IDENTIFIER %reduce GRAM_EXPRESSION_SIMPLE
+  %right identifierList TOKEN_COMMA TOKEN_IDENTIFIER
+    %reduce GRAM_EXPRESSION_BINARY;
+
+%left paramList
+  %right variableDefSimple %reduce GRAM_EXPRESSION_SIMPLE
+  %right paramList TOKEN_COMMA variableDefSimple
+    %reduce GRAM_EXPRESSION_BINARY;
+
+
+// BLOCKS
+//
+
+%left statementBlock
+  %right TOKEN_LBRACE functionContentSeq TOKEN_RBRACE
+    %reduce GRAM_STATEMENT_BLOCK;
+
+%left statementBlockEmpty
+  %right TOKEN_LBRACE TOKEN_RBRACE
+    %reduce GRAM_STATEMENT_BLOCK_EMPTY;
+
+%left variableBlock
+  %right TOKEN_LBRACE exp TOKEN_RBRACE
+    %reduce GRAM_VARIABLE_BLOCK;
+
+%left variableBlockEmpty
+  %right TOKEN_LBRACE TOKEN_RBRACE
+    %reduce GRAM_VARIABLE_BLOCK_EMPTY;
+
+%left classBlock
+  %right TOKEN_LBRACE classContentSeq TOKEN_RBRACE
+    %reduce GRAM_CLASS_BLOCK;
+
+%left classBlockEmpty
+  %right TOKEN_LBRACE TOKEN_RBRACE
+    %reduce GRAM_CLASS_BLOCK_EMPTY;
+
+%left packageBlock
+  %right TOKEN_LBRACE packageContentSeq TOKEN_RBRACE
+    %reduce GRAM_PACKAGE_BLOCK;
+
+%left packageBlockEmpty
+  %right TOKEN_LBRACE TOKEN_RBRACE
+    %reduce GRAM_PACKAGE_BLOCK_EMPTY;
+
+
+// PACKAGE STUFF
+//
+
+%left packageContentSeq
+  %right packageContent %reduce GRAM_SEQUENCE
+  %right packageContentSeq packageContent %reduce GRAM_SEQUENCE;
+
+%left packageContent
+  %right importDef %reduce GRAM_SEQUENCE
+  %right packageDef %reduce GRAM_SEQUENCE
+  %right classDef %reduce GRAM_SEQUENCE;
+
+%left selectIdentifierWalk
+  %right TOKEN_IDENTIFIER %reduce GRAM_EXPRESSION_SIMPLE
+  %right selectIdentifierWalk TOKEN_DOT TOKEN_IDENTIFIER
+    %reduce GRAM_EXPRESSION_BINARY
+  %right selectIdentifierWalk TOKEN_DOT TOKEN_TIMES
+    %reduce GRAM_EXPRESSION_BINARY;
+
+%left importDef
+  %right TOKEN_KEYWORD_IMPORT selectIdentifierWalk TOKEN_SEMICOLON
+    %reduce GRAM_IMPORT_DEF
+  %right TOKEN_KEYWORD_USING selectIdentifierWalk TOKEN_SEMICOLON
+    %reduce GRAM_IMPORT_DEF;
+
+%left packageDef
+  %right TOKEN_KEYWORD_PACKAGE identifierWalk packageBlock
+    %reduce GRAM_PACKAGE_DEF
+  %right TOKEN_KEYWORD_PACKAGE identifierWalk packageBlockEmpty
+    %reduce GRAM_PACKAGE_DEF
+  %right TOKEN_KEYWORD_PACKAGE identifierWalk TOKEN_SEMICOLON
+    %reduce GRAM_PACKAGE_DEF;
+
+%left packageDef
+  %right TOKEN_KEYWORD_NAMESPACE identifierWalk packageBlock
+    %reduce GRAM_PACKAGE_DEF
+  %right TOKEN_KEYWORD_NAMESPACE identifierWalk packageBlockEmpty
+    %reduce GRAM_PACKAGE_DEF
+  %right TOKEN_KEYWORD_NAMESPACE identifierWalk TOKEN_SEMICOLON
+    %reduce GRAM_PACKAGE_DEF;
+
+
+// CLASS STUFF
+//
+
+%left classContentSeq
+  %right classContent %reduce GRAM_SEQUENCE
+  %right classContentSeq classContent %reduce GRAM_SEQUENCE;
+
+%left classContent
+  %right functionDefFull %reduce GRAM_SEQUENCE
+  %right variableDefFull %reduce GRAM_SEQUENCE;
+
+%left classDef
+  %right TOKEN_KEYWORD_CLASS TOKEN_IDENTIFIER
+    classRelationSeq
+    classBlock
+    %reduce GRAM_CLASS_DEF
+  %right TOKEN_KEYWORD_CLASS TOKEN_IDENTIFIER
+    classRelationSeq
+    classBlockEmpty
+    %reduce GRAM_CLASS_DEF
+  %right accessModifierSeq TOKEN_KEYWORD_CLASS TOKEN_IDENTIFIER
+    classRelationSeq
+    classBlock
+    %reduce GRAM_CLASS_DEF_WITH_MODIFIERS
+  %right accessModifierSeq TOKEN_KEYWORD_CLASS TOKEN_IDENTIFIER
+    classRelationSeq
+    classBlockEmpty
+    %reduce GRAM_CLASS_DEF_WITH_MODIFIERS;
+
+%left classDef
+  %right TOKEN_KEYWORD_INTERFACE TOKEN_IDENTIFIER
+    classRelationSeq
+    classBlock
+    %reduce GRAM_CLASS_DEF
+  %right TOKEN_KEYWORD_INTERFACE TOKEN_IDENTIFIER
+    classRelationSeq
+    classBlockEmpty
+    %reduce GRAM_CLASS_DEF
+  %right accessModifierSeq TOKEN_KEYWORD_INTERFACE TOKEN_IDENTIFIER
+    classRelationSeq
+    classBlock
+    %reduce GRAM_CLASS_DEF_WITH_MODIFIERS
+  %right accessModifierSeq TOKEN_KEYWORD_INTERFACE TOKEN_IDENTIFIER
+    classRelationSeq
+    classBlockEmpty
+    %reduce GRAM_CLASS_DEF_WITH_MODIFIERS;
+
+%left classRelationSeq
+  %right %reduce GRAM_SEQUENCE
+  %right classRelationSeq classRelation %reduce GRAM_SEQUENCE;
+
+%left classRelation
+  %right TOKEN_KEYWORD_EXTENDS identifierList
+    %reduce GRAM_MODULE_EXTENDS
+  %right TOKEN_KEYWORD_IMPLEMENTS identifierList
+    %reduce GRAM_MODULE_IMPLEMENTS
+  %right TOKEN_COLON identifierList
+    %reduce GRAM_MODULE_EXTENDS_AND_IMPLEMENTS;
+
+
+// FUNCTION STUFF
+//
+
+%left functionContentSeq
+  %right functionContent %reduce GRAM_SEQUENCE
+  %right functionContentSeq functionContent %reduce GRAM_SEQUENCE;
+
+%left functionContent
+  %right statement %reduce GRAM_SEQUENCE
+  %right variableDefFull %reduce GRAM_SEQUENCE;
+
+%left functionDefSimple
+  %right variableDefSimple expParenParametersDefinition
+    %reduce GRAM_FUNCTION_DEF_SIMPLE
+  %right variableDefSimple expParenParametersDefinitionEmpty
+    %reduce GRAM_FUNCTION_DEF_SIMPLE;
+
+%left functionInit
+  %right TOKEN_ASSIGN statementBlock %reduce GRAM_FUNCTION_INIT
+  %right TOKEN_ASSIGN statementBlockEmpty %reduce GRAM_FUNCTION_INIT;
+
+%left functionDefFull
+  %right functionDefSimple
+    statementBlock
+    %reduce GRAM_FUNCTION_DEF_FULL
+  %right functionDefSimple
+    statementBlockEmpty
+    %reduce GRAM_FUNCTION_DEF_FULL
+  %right accessModifierSeq functionDefSimple
+    statementBlock
+    %reduce GRAM_FUNCTION_DEF_FULL_WITH_MODIFIERS
+  %right accessModifierSeq functionDefSimple
+    statementBlockEmpty
+    %reduce GRAM_FUNCTION_DEF_FULL_WITH_MODIFIERS;
+
+%left functionDefFull
+  %right functionDefSimple
+    TOKEN_SEMICOLON
+    %reduce GRAM_FUNCTION_DEF_FULL
+  %right functionDefSimple
+    functionInit
+    TOKEN_SEMICOLON
+    %reduce GRAM_FUNCTION_DEF_FULL_WITH_INIT
+  %right accessModifierSeq functionDefSimple
+    TOKEN_SEMICOLON
+    %reduce GRAM_FUNCTION_DEF_FULL_WITH_MODIFIERS
+  %right accessModifierSeq functionDefSimple
+    functionInit
+    TOKEN_SEMICOLON
+    %reduce GRAM_FUNCTION_DEF_FULL_WITH_MODIFIERS_WITH_INIT;
+
+
+// VARIABLE STUFF
+//
+
+%left variableInit
+  %right TOKEN_ASSIGN exp %reduce GRAM_VARIABLE_INIT
+  %right TOKEN_ASSIGN variableBlock %reduce GRAM_VARIABLE_INIT
+  %right TOKEN_ASSIGN variableBlockEmpty %reduce GRAM_VARIABLE_INIT;
+
+%left variableDefFull
+  %right variableDefSimple TOKEN_SEMICOLON
+    %reduce GRAM_VARIABLE_DEF_FULL
+  %right variableDefSimple variableInit TOKEN_SEMICOLON
+    %reduce GRAM_VARIABLE_DEF_FULL_WITH_INIT
+  %right accessModifierSeq variableDefSimple TOKEN_SEMICOLON
+    %reduce GRAM_VARIABLE_DEF_FULL_WITH_MODIFIERS
+  %right accessModifierSeq variableDefSimple variableInit TOKEN_SEMICOLON
+    %reduce GRAM_VARIABLE_DEF_FULL_WITH_MODIFIERS_WITH_INIT;
+
+
+// VARIABLE DEFINITION SIMPLE
+//
+
+%left variableDefSimple
+  %right expTypeLike TOKEN_IDENTIFIER
+    %reduce GRAM_VARIABLE_DEF_SIMPLE;
+
+
+// STATEMENTS
+//
+
+%left statement
+  %right statementBlock %reduce GRAM_SEQUENCE
+  %right statementBlockEmpty %reduce GRAM_SEQUENCE
+  %right exp TOKEN_SEMICOLON
+    %reduce GRAM_STATEMENT_EXPRESSION
+  %right TOKEN_IDENTIFIER TOKEN_COLON
+    %reduce GRAM_STATEMENT_LABEL
+  %right TOKEN_KEYWORD_IF expParen
+    statement
+    %prec TOKEN_KEYWORD_THEN
+    %reduce GRAM_STATEMENT_IF_THEN
+  %right TOKEN_KEYWORD_IF expParen
+    statement TOKEN_KEYWORD_ELSE statement
+    %prec TOKEN_KEYWORD_ELSE
+    %reduce GRAM_STATEMENT_IF_THEN_ELSE
+  %right TOKEN_KEYWORD_WHILE expParen
+    statement
+    %reduce GRAM_STATEMENT_WHILE
+  %right TOKEN_KEYWORD_TRY statement
+    %reduce GRAM_STATEMENT_TRY
+  %right TOKEN_KEYWORD_CATCH expParenParametersDefinition
+    statement
+    %reduce GRAM_STATEMENT_CATCH
+  %right TOKEN_KEYWORD_SWITCH expParen
+    statement
+    %reduce GRAM_STATEMENT_SWITCH
+  %right TOKEN_KEYWORD_BREAK TOKEN_SEMICOLON
+    %reduce GRAM_STATEMENT_BREAK
+  %right TOKEN_KEYWORD_BREAK TOKEN_IDENTIFIER TOKEN_SEMICOLON
+    %reduce GRAM_STATEMENT_BREAK_WITH_LABEL
+  %right TOKEN_KEYWORD_CONTINUE TOKEN_SEMICOLON
+    %reduce GRAM_STATEMENT_CONTINUE
+  %right TOKEN_KEYWORD_CONTINUE TOKEN_IDENTIFIER TOKEN_SEMICOLON
+    %reduce GRAM_STATEMENT_CONTINUE_WITH_LABEL
+  %right TOKEN_KEYWORD_RETURN TOKEN_SEMICOLON
+    %reduce GRAM_STATEMENT_RETURN
+  %right TOKEN_KEYWORD_RETURN exp TOKEN_SEMICOLON
+    %reduce GRAM_STATEMENT_RETURN_WITH_EXPRESSION
+  %right TOKEN_KEYWORD_THROW exp TOKEN_SEMICOLON
+    %reduce GRAM_STATEMENT_THROW
+  %right TOKEN_KEYWORD_CASE exp TOKEN_COLON
+    %reduce GRAM_STATEMENT_CASE
+  %right TOKEN_KEYWORD_DEFAULT TOKEN_COLON
+    %reduce GRAM_STATEMENT_DEFAULT;
+
+
+// SIMPLE EXPRESSIONS
+//
+
+%left exp
+  %right TOKEN_INTEGER_FULL %reduce GRAM_EXPRESSION_SIMPLE
+  %right TOKEN_FLOAT_FULL %reduce GRAM_EXPRESSION_SIMPLE
+  %right TOKEN_STRING %reduce GRAM_EXPRESSION_SIMPLE
+  %right TOKEN_CHARACTER %reduce GRAM_EXPRESSION_SIMPLE
+
+  %right TOKEN_KEYWORD_NULL %reduce GRAM_EXPRESSION_SIMPLE
+  %right TOKEN_KEYWORD_FALSE %reduce GRAM_EXPRESSION_SIMPLE
+  %right TOKEN_KEYWORD_TRUE %reduce GRAM_EXPRESSION_SIMPLE;
+
+
+// MATH AND LOGIC EXPRESSIONS
+//
+
+%left exp
+  %right exp TOKEN_ASSIGN exp %reduce GRAM_EXPRESSION_BINARY
+
+  %right exp TOKEN_PLUS exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_MINUS exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_TIMES exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_DIVIDE exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_MOD exp %reduce GRAM_EXPRESSION_BINARY
+  %right TOKEN_MINUS exp
+    %prec TOKEN_UMINUS
+    %reduce GRAM_EXPRESSION_UNARY_PREFIX
+
+  %right exp TOKEN_PLUS_ASSIGN exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_MINUS_ASSIGN exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_TIMES_ASSIGN exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_DIVIDE_ASSIGN exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_MOD_ASSIGN exp %reduce GRAM_EXPRESSION_BINARY
+
+  %right exp TOKEN_AND_BITWISE exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_OR_BITWISE exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_XOR_BITWISE exp %reduce GRAM_EXPRESSION_BINARY
+
+  %right exp TOKEN_AND_BITWISE_ASSIGN exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_OR_BITWISE_ASSIGN exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_XOR_BITWISE_ASSIGN exp %reduce GRAM_EXPRESSION_BINARY
+
+  %right TOKEN_NOT_BITWISE exp %reduce GRAM_EXPRESSION_UNARY_PREFIX
+
+  %right exp TOKEN_SHIFT_LEFT exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_SHIFT_RIGHT exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_SHIFT_RIGHT_LOGICAL exp %reduce GRAM_EXPRESSION_BINARY
+
+  %right exp TOKEN_SHIFT_LEFT_ASSIGN exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_SHIFT_RIGHT_ASSIGN exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_SHIFT_RIGHT_LOGICAL_ASSIGN exp
+    %reduce GRAM_EXPRESSION_BINARY
+
+  %right exp TOKEN_AND_LOGICAL exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_OR_LOGICAL exp %reduce GRAM_EXPRESSION_BINARY
+
+  %right TOKEN_NOT_LOGICAL exp %reduce GRAM_EXPRESSION_UNARY_PREFIX
+
+  %right exp TOKEN_EQUAL exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_NOT_EQUAL exp %reduce GRAM_EXPRESSION_BINARY
+
+  %right exp TOKEN_LESS exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_LESS_EQUAL exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_GREATER exp %reduce GRAM_EXPRESSION_BINARY
+  %right exp TOKEN_GREATER_EQUAL exp %reduce GRAM_EXPRESSION_BINARY;
+
+
+// FUNDAMENTAL EXPRESSIONS
+//
+
+%left expTypeLike
+  %right identifierWalk %reduce GRAM_EXPRESSION_SIMPLE
+  %right expTypeLike expBrackEmpty %reduce GRAM_EXPRESSION_ARRAY_TYPE;
+
+%left expParenTypeLike
+  %right TOKEN_LPAREN expTypeLike TOKEN_RPAREN
+    %reduce GRAM_EXPRESSION_PAREN;
+
+
+// COMPLICATED EXPRESSIONS
+//
+
+%left exp
+  %right exp TOKEN_COMMA exp %reduce GRAM_EXPRESSION_BINARY
+
+  %right expParen %reduce GRAM_EXPRESSION_SIMPLE
+
+  %right expTypeLike %reduce GRAM_EXPRESSION_SIMPLE
+    // the precedence prioritizes shifting of TOKEN_RPAREN,
+    // to complete expParenTypeLike
+    %prec TOKEN_EXPRESSION_LIKE
+
+  %right expTypeLike expBrack
+    %reduce GRAM_EXPRESSION_ARRAY_ACCESS
+
+  %right identifierWalk expParen
+    %reduce GRAM_EXPRESSION_FUNCTION_CALL
+  %right identifierWalk expParenTypeLike
+    %reduce GRAM_EXPRESSION_FUNCTION_CALL
+  %right identifierWalk expParenEmpty
+    %reduce GRAM_EXPRESSION_FUNCTION_CALL
+
+  %right TOKEN_KEYWORD_NEW identifierWalk expParen
+    %reduce GRAM_EXPRESSION_ALLOCATION_CALL
+  %right TOKEN_KEYWORD_NEW identifierWalk expParenTypeLike
+    %reduce GRAM_EXPRESSION_ALLOCATION_CALL
+  %right TOKEN_KEYWORD_NEW identifierWalk expParenEmpty
+    %reduce GRAM_EXPRESSION_ALLOCATION_CALL
+  %right TOKEN_KEYWORD_NEW identifierWalk expBrack
+    %reduce GRAM_EXPRESSION_ALLOCATION_ARRAY
+
+  %right expParenTypeLike exp
+    %prec TOKEN_KEYWORD_CAST
+    %reduce GRAM_EXPRESSION_CAST
+
+  %right exp TOKEN_KEYWORD_INSTANCE_OF expTypeLike
+    %reduce GRAM_EXPRESSION_INSTANCE_OF;
+
+
+// PARENTHESIS EXPRESSIONS
+//
+
+%left expParenParametersDefinition
+  %right TOKEN_LPAREN paramList TOKEN_RPAREN
+    %reduce GRAM_EXPRESSION_PAREN;
+
+%left expParenParametersDefinitionEmpty
+  %right TOKEN_LPAREN TOKEN_RPAREN
+    %reduce GRAM_EXPRESSION_PAREN_EMPTY;
+
+%left expParen
+  %right TOKEN_LPAREN exp TOKEN_RPAREN
+    %reduce GRAM_EXPRESSION_PAREN;
+
+%left expParenEmpty
+  %right TOKEN_LPAREN TOKEN_RPAREN
+    %reduce GRAM_EXPRESSION_PAREN_EMPTY;
+
+
+// BRACKET EXPRESSIONS
+//
+
+%left expBrack
+  %right TOKEN_LBRACK exp TOKEN_RBRACK
+    %reduce GRAM_EXPRESSION_BRACK;
+
+%left expBrackEmpty
+  %right TOKEN_LBRACK TOKEN_RBRACK
+    %reduce GRAM_EXPRESSION_BRACK_EMPTY;
