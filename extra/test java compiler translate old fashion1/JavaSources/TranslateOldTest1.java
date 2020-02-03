@@ -137,6 +137,11 @@ public class TranslateOldTest1 {
 	// core logic test
 	//
 	
+	public void initTestIncludeFileStack(CommonInt32Array filePath) {
+		
+	}
+	
+	
 	public void initTestFile(CommonInt32Array filePath) {
 		FileNode2 dirNode;
 		FileNode2 fileNode;

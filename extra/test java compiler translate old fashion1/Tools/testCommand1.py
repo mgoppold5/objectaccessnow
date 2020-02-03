@@ -80,7 +80,7 @@ def main():
 		print("program not found")
 		return
 	
-	cmdModule = "TranslateRegularTest1"
+	cmdModule = "TranslateOldTest1"
 	
 	cmd1 = cmd1 + " -cp " + QUOTE + classPath + QUOTE
 	cmd1 = cmd1 + " " + cmdModule

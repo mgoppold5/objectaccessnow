@@ -45,6 +45,9 @@ public class TranslateOldTest1LogicReadData {
 	Symbol mostRecentParseSym;
 	CFamilyNode2 currentCFamilyNode;
 	
+	// list of 
+	CommonArrayList includeFileStack;
+	
 	public void init(
 		TranslateOldTest1Data commonDat,
 		TranslateOldTest1GrammarData grmrDat) {
