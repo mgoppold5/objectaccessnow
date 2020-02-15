@@ -30,12 +30,15 @@ public class TokenUtils {
 	
 	public TypeAndObject[] cFamilyKeyword2TokenMap;
 	
+	public TypeAndObject[] cFamilyOldIncludeKeyword2TokenMap;
+			
 	public void init() {
 		cFamilyPunct2TokenMap = initCFamilyPunct();
 		jsonPunct2TokenMap = initJsonPunct();
 		jsonKeyword2TokenMap = initJsonKeyword();
 		grammarKeyword2TokenMap = initGrammarKeyword();
 		cFamilyKeyword2TokenMap = initCFamilyKeyword();
+		cFamilyOldIncludeKeyword2TokenMap = initCFamilyOldIncludeKeyword();
 	}
 	
 	private TypeAndObject[] initCFamilyPunct() {
@@ -87,6 +90,22 @@ public class TokenUtils {
 		addDataKeywords(map, sortRec);
 		addExpressionKeywords(map, sortRec);
 		addParenthesisTypeKeywords(map, sortRec);
+		
+		return mapListToArray(map);
+	}
+
+	public TypeAndObject[] initCFamilyOldIncludeKeyword() {
+		CommonArrayList map = makeArrayList();
+		SortParams sortRec = makeSortParams();
+		
+		//addAccessModifierKeywords(map, sortRec);
+		//addModuleStructureKeywords(map, sortRec);
+		//addStatementKeywords(map, sortRec);
+		//addDataKeywords(map, sortRec);
+		//addExpressionKeywords(map, sortRec);
+		//addParenthesisTypeKeywords(map, sortRec);
+		
+		addOldIncludeKeywords(map, sortRec);
 		
 		return mapListToArray(map);
 	}
@@ -970,6 +989,21 @@ public class TokenUtils {
 			Keywords.KEYWORD_PAREN_DICT_INIT,
 			cat,
 			Symbols.TOKEN_KEYWORD_PAREN_DICT_INIT);
+		addMatchSort(map, entry, sortRec);
+	}
+
+	private void addOldIncludeKeywords(
+		CommonArrayList map, SortParams sortRec) {
+		
+		TypeAndObject entry;
+		int cat;
+
+		cat = Symbols.TOKEN_CATEGORY_KEYWORDS_OLD_INCLUDE;
+
+		entry = newMatch(
+			Keywords.KEYWORD_OLD_INCLUDE_INCLUDE,
+			cat,
+			Symbols.TOKEN_OLD_INCLUDE_KEYWORD_INCLUDE);
 		addMatchSort(map, entry, sortRec);
 	}
 	

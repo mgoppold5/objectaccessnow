@@ -138,7 +138,53 @@ public class TranslateOldTest1 {
 	//
 	
 	public void initTestIncludeFileStack(CommonInt32Array filePath) {
+		FileNode2 dirNode;
+		FileNode2 fileNode;
 		
+		TranslateOldTest1IncludeFile incF = new TranslateOldTest1IncludeFile();
+		incF.init(dat, grmrDat);
+		
+		incF.testDirNode = dat.globalTestDirNode;
+		
+		dirNode = (FileNode2) incF.testDirNode;
+		if(dirNode == null)
+			throw makeObjectNotFound(null);
+		
+		if(FileNode2Utils.getInnerFileSystem(dirNode) == null)
+			throw makeObjectNotFound(null);
+		
+		if(FileNode2Utils.getFileType(dirNode, filePath, '/')
+			!= FileTypes.FILE_TYPE_NORMAL_FILE)
+			throw makeObjectUnexpected(null);
+		
+		fileNode = FileNode2Utils.createFilePathNode(dirNode, filePath);
+		incF.testFileNode = fileNode;
+		incF.fileDat = FileNode2Utils.openNormalFile(
+			fileNode, (short) AccessRights.ACCESS_READ, '/');
+		
+		dat.linkUtils.initFileContext(fileNode, incF.fileDat);
+		incF.charRead = dat.linkUtils.createCharReader3FromFileContext(
+			fileNode, incF.fileDat, dat.utils);
+		incF.strRead = dat.linkUtils.createStringReader3FromFileContext(
+			fileNode, incF.fileDat, dat.utils);
+
+		incF.strRead.reset();
+		incF.charRead.reset();
+
+		incF.tokChoose.charRead = incF.charRead;
+
+		incF.tokenRead.charRead = incF.charRead;
+		//incF.tokenRead.setAllocHelper(incF.allocHelp);
+		incF.tokenRead.reset();
+		
+		incF.keywordRead.charRead = incF.charRead;
+		//incF.keywordRead.setAllocHelper(incF.allocHelp);
+		incF.keywordRead.reset();
+
+		incF.intEval.strRead = incF.strRead;
+
+		srcDat.includeFileStack = makeArrayList();
+		srcDat.includeFileStack.add(incF);
 	}
 	
 	

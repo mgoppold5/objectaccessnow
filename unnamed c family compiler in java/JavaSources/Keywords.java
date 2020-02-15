@@ -113,4 +113,10 @@ public class Keywords {
 	public static final String KEYWORD_ACCESS_MODIFIER_VIRTUAL = "virtual";
 	public static final String KEYWORD_ACCESS_MODIFIER_ABSTRACT = "abstract";
 	public static final String KEYWORD_ACCESS_MODIFIER_OVERRIDE = "override";
+	
+	
+	// Old Include keywords
+	//
+	
+	public static final String KEYWORD_OLD_INCLUDE_INCLUDE = "include";
 }

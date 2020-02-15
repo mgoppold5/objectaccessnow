@@ -215,6 +215,14 @@ public class Symbols {
 	public static final int GRAM_GRAMMAR_RULE_RIGHT_SEQUENCE = 941;
 	public static final int GRAM_GRAMMAR_RULE_MODIFIER_SEQUENCE = 942;
 		
+
+	// C Family Old Include stuff (preprocessor)
+	//
+	
+	public static final int TOKEN_CATEGORY_KEYWORDS_OLD_INCLUDE = 1100;
+
+	public static final int TOKEN_OLD_INCLUDE_KEYWORD_INCLUDE = 1101;
+
 	
 	// Math and logic tokens
 	//

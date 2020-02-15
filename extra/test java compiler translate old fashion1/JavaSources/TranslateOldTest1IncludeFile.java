@@ -27,6 +27,53 @@ public class TranslateOldTest1IncludeFile {
 
 	CharReaderAccess charRead;
 	StringReaderAccess strRead;
-
+	
 	TokenChooser tokChoose;
+	CFamilyIncludeTokenReader tokenRead;
+	KeywordTokenFilter keywordRead;
+	TokenIntegerEval intEval;
+	
+	public void init(
+		TranslateOldTest1Data commonDat,
+		TranslateOldTest1GrammarData grmrDat) {
+		
+		tokChoose = new TokenChooser();
+		tokChoose.dat = new TokenChooserData();
+		tokChoose.dat.init();
+		//tokChoose.dat.charReadParams = 
+		tokChoose.charRead = charRead;
+		tokChoose.utils = commonDat.utils;
+
+		tokenRead = new CFamilyIncludeTokenReader();
+		tokenRead.dat = new CFamilyIncludeTokenReaderData();
+		tokenRead.dat.init();
+		//tokenRead.dat.charReadParams = 
+		tokenRead.utils = commonDat.utils;
+		tokenRead.charRead = charRead;
+		tokenRead.tokChoose = tokChoose;
+		tokenRead.initHelpers(commonDat.utils, commonDat.tokUtils);
+
+		keywordRead = new KeywordTokenFilter();
+		keywordRead.dat = new KeywordTokenFilterData();
+		keywordRead.dat.init();
+		//keywordRead.dat.charReadParams = 
+		keywordRead.utils = commonDat.utils;
+		keywordRead.charRead = charRead;
+		keywordRead.tokRead = tokenRead;
+		keywordRead.tokChoose = tokChoose;
+		keywordRead.keywordHelp = new MatchingTokenHelper();
+		keywordRead.keywordHelp.dat = new MatchingTokenHelperData();
+		keywordRead.keywordHelp.dat.init();
+		keywordRead.keywordHelp.dat.matchMap
+			= commonDat.tokUtils.cFamilyOldIncludeKeyword2TokenMap;
+		keywordRead.keywordHelp.utils = commonDat.utils;
+		
+		
+		intEval = new TokenIntegerEval();
+		intEval.dat = new TokenIntegerEvalData();
+		intEval.dat.init();
+		//intEval.dat.charReadParams = 
+		intEval.utils = commonDat.utils;
+		//intEval.charRead = charRead;
+	}
 }
